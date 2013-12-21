@@ -42,34 +42,7 @@ namespace FeatureController
             public MvcControllerFactory(IWindsorContainer container)
             {
                 _container = container;
-            }
-
-            static readonly string DefaultNamespace = typeof(MvcApplication).Namespace + ".Features";
-            private string BuildFullName(string controllerName)
-            {
-
-                var potentialFullName = string.Format("{0}.{1}.{1}Controller", DefaultNamespace, controllerName);
-                return potentialFullName;
-            }
-            private Type BuildType(string controllerName)
-            {
-                var fullName = BuildFullName(controllerName);
-                if (_cache.ContainsKey(fullName))
-                    return _cache[fullName];
-
-                if (_container.Kernel.HasComponent(fullName))
-                {
-                    var type = Type.GetType(fullName);
-                    _cache[fullName] = type;
-                    return type;
-                }
-                return null;
-            }
-
-            protected override Type GetControllerType(RequestContext requestContext, string controllerName)
-            {
-                return BuildType(controllerName) ?? base.GetControllerType(requestContext, controllerName);
-            }
+            }           
 
             protected override IController GetControllerInstance(RequestContext requestContext, Type controllerType)
             {

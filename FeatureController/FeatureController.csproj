@@ -175,7 +175,7 @@
     <Compile Include="Infrastructure\FeatureBundles.cs" />
     <Compile Include="Infrastructure\FeatureViewLocationRazorViewEngine.cs" />
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
-    <Compile Include="Features\Account\AccountViewModels.cs" />
+    <Compile Include="Features\Account\ViewModels\AccountViewModels.cs" />
     <Compile Include="Features\Account\IdentityModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

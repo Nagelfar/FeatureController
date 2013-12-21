@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    @FeatureController.Infrastructure.FeatureBundles.Styles(this.ViewContext.RouteData)
 
+    @Scripts.Render("~/bundles/modernizr")
 </head>
 <body>
     <div class="navbar navbar-inverse navbar-fixed-top">
@@ -39,17 +40,7 @@
 
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
-    @{
-        var path = string.Format(
-            "~/Features/{0}/{1}/Index.js",
-            this.ViewContext.RouteData.GetRequiredString("controller"),
-            this.ViewContext.RouteData.GetRequiredString("action"));
-
-        if (BundleTable.Bundles.GetBundleFor(path) != null)
-        {
-            @Scripts.Render(path)
-        }
-    }
+    @FeatureController.Infrastructure.FeatureBundles.Scripts(this.ViewContext.RouteData)
     
     @RenderSection("scripts", required: false)
 </body>

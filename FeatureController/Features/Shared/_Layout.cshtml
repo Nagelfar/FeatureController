@@ -19,11 +19,14 @@
                     <span class="icon-bar"></span>
                 </button>
                 @Html.ActionLink("Application name", "Index", "Home", null, new { @class = "brand" })
-                
+
                 <div class="nav-collapse collapse">
                     <ul class="nav">
                         <li>@Html.ActionLink("Home", "Index", "Home")</li>
-                        <li>@Html.ActionLink("Foos?", "Index", "Foo")</li>
+                        @if (Feature<FeatureController.Features.Foo.FooController>.Is().Enabled)
+                        {
+                            <li>@Html.ActionLink("Foos?", "Index", "Foo")</li>
+                        }
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     </ul>
@@ -43,7 +46,7 @@
     @Scripts.Render("~/bundles/jquery")
     @Scripts.Render("~/bundles/bootstrap")
     @FeatureController.Infrastructure.FeatureBundles.Scripts(this.ViewContext.RouteData)
-    
+
     @RenderSection("scripts", required: false)
 </body>
 

@@ -48,6 +48,12 @@
     <Reference Include="Castle.Windsor.Mvc">
       <HintPath>..\packages\Castle.Windsor.Mvc.1.2.0.0\lib\net45\Castle.Windsor.Mvc.dll</HintPath>
     </Reference>
+    <Reference Include="FeatureSwitcher">
+      <HintPath>..\packages\FeatureSwitcher.1.0.1\lib\4.0\FeatureSwitcher.dll</HintPath>
+    </Reference>
+    <Reference Include="FeatureSwitcher.Configuration">
+      <HintPath>..\packages\FeatureSwitcher.Configuration.1.0.1\lib\4.0\FeatureSwitcher.Configuration.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
     <Reference Include="System.Data" />

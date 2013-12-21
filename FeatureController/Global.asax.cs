@@ -7,7 +7,9 @@ using System.Web;
 using System.Web.Mvc;
 using System.Web.Optimization;
 using System.Web.Routing;
-
+using FeatureSwitcher.Configuration;
+using FeatureSwitcher;
+using System.IO;
 namespace FeatureController
 {
     // Note: For instructions on enabling IIS7 classic mode, 
@@ -29,8 +31,17 @@ namespace FeatureController
 
             System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(new MvcControllerFactory(Container));
 
-            //System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(new MvcControllerFactory(Container));
 
+            InitFeatureSwitcher();
+        }
+
+        private void InitFeatureSwitcher()
+        {
+            FeatureSwitcher.Configuration.Features
+                .Are
+                .ConfiguredBy.Custom(x=>File.Exists( Path.Combine( HttpRuntime.AppDomainAppPath,"App_Data",x.Value)))
+                .NamedBy.TypeName()
+                ;
         }
 
         public Castle.Windsor.IWindsorContainer Container { get; set; }

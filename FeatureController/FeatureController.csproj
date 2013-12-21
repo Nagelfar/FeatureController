@@ -186,10 +186,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Features\Account\Register\Index.css" />
-    <Content Include="Features\Account\Register\Index.js" />
-    <Content Include="Features\Account\Shared\Index.css" />
-    <Content Include="Features\Account\Shared\Index.js" />
+    <Content Include="Features\Account\Views\Register\Index.css" />
+    <Content Include="Features\Account\Views\Register\Index.js" />
+    <Content Include="Features\Account\Views\Shared\Index.css" />
+    <Content Include="Features\Account\Views\Shared\Index.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\glyphicons-halflings-white.png" />
@@ -217,18 +217,18 @@
     <Content Include="Features\_ViewStart.cshtml" />
     <Content Include="Features\Shared\Error.cshtml" />
     <Content Include="Features\Shared\_Layout.cshtml" />
-    <Content Include="Features\Home\About.cshtml" />
-    <Content Include="Features\Home\Contact.cshtml" />
-    <Content Include="Features\Home\Index.cshtml" />
-    <Content Include="Features\Account\Manage\_ChangePasswordPartial.cshtml" />
-    <Content Include="Features\Account\Shared\_ExternalLoginsListPartial.cshtml" />
-    <Content Include="Features\Account\Manage\_RemoveAccountPartial.cshtml" />
-    <Content Include="Features\Account\Manage\_SetPasswordPartial.cshtml" />
-    <Content Include="Features\Account\Shared\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Features\Account\Shared\ExternalLoginFailure.cshtml" />
-    <Content Include="Features\Account\Login\Login.cshtml" />
-    <Content Include="Features\Account\Manage\Manage.cshtml" />
-    <Content Include="Features\Account\Register\Index.cshtml" />
+    <Content Include="Features\Home\Views\About.cshtml" />
+    <Content Include="Features\Home\Views\Contact.cshtml" />
+    <Content Include="Features\Home\Views\Index.cshtml" />
+    <Content Include="Features\Account\Views\Manage\_ChangePasswordPartial.cshtml" />
+    <Content Include="Features\Account\Views\Shared\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Features\Account\Views\Manage\_RemoveAccountPartial.cshtml" />
+    <Content Include="Features\Account\Views\Manage\_SetPasswordPartial.cshtml" />
+    <Content Include="Features\Account\Views\Shared\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Features\Account\Views\Shared\ExternalLoginFailure.cshtml" />
+    <Content Include="Features\Account\Views\Login\Login.cshtml" />
+    <Content Include="Features\Account\Views\Manage\Manage.cshtml" />
+    <Content Include="Features\Account\Views\Register\Index.cshtml" />
     <Content Include="Features\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>

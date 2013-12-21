@@ -10,37 +10,34 @@ namespace FeatureController.Infrastructure
 {
     public static class FeatureBundles
     {
-        private static string PathForFeatureBundle(RouteData routeData, string extension)
+        private static IEnumerable<string> PathForFeatureBundle(RouteData routeData, string extension)
         {
-            var path = string.Format(
+            yield return string.Format(
+                "~/Features/{0}/Shared/Index.{1}",
+                routeData.GetRequiredString("controller"),
+                extension
+                );
+            yield return string.Format(
                 "~/Features/{0}/{1}/Index.{2}",
                 routeData.GetRequiredString("controller"),
                 routeData.GetRequiredString("action"),
                 extension
                 );
-
-            return path;
         }
 
         public static IHtmlString Scripts(RouteData routeData)
         {
-            var path = PathForFeatureBundle(routeData, "js");
+            var path = PathForFeatureBundle(routeData, "js")
+                .Where(x => BundleTable.Bundles.GetBundleFor(x) != null);
 
-            if (BundleTable.Bundles.GetBundleFor(path) != null)
-            {
-                return System.Web.Optimization.Scripts.Render(path);
-            }
-            return MvcHtmlString.Empty;
+            return System.Web.Optimization.Scripts.Render(path.ToArray());
         }
         public static IHtmlString Styles(RouteData routeData)
         {
-            var path = PathForFeatureBundle(routeData, "css");
+            var path = PathForFeatureBundle(routeData, "css")
+                .Where(x => BundleTable.Bundles.GetBundleFor(x) != null);
 
-            if (BundleTable.Bundles.GetBundleFor(path) != null)
-            {
-                return System.Web.Optimization.Styles.Render(path);
-            }
-            return MvcHtmlString.Empty;
+            return System.Web.Optimization.Styles.Render(path.ToArray());
         }
     }
 }

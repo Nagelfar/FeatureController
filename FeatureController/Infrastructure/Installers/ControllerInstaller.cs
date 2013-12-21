@@ -13,7 +13,7 @@ namespace FeatureController.Infrastructure.Installers
         {
             container.Register(Classes.FromThisAssembly()
                 .BasedOn<IController>()
-                .LifestylePerWebRequest()
+                .LifestyleTransient()
                 );
         }
     }

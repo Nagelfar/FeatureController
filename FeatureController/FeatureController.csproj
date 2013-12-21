@@ -172,6 +172,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Infrastructure\Bootstrapper.cs" />
+    <Compile Include="Infrastructure\FeatureBundles.cs" />
     <Compile Include="Infrastructure\FeatureViewLocationRazorViewEngine.cs" />
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
     <Compile Include="Features\Account\AccountViewModels.cs" />
@@ -185,6 +186,7 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
+    <Content Include="Features\Account\Login\Index.css" />
     <Content Include="Features\Account\Register\Index.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
@@ -217,11 +219,11 @@
     <Content Include="Features\Home\Contact.cshtml" />
     <Content Include="Features\Home\Index.cshtml" />
     <Content Include="Features\Account\Manage\_ChangePasswordPartial.cshtml" />
-    <Content Include="Features\Account\Manage\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Features\Account\Shared\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Features\Account\Manage\_RemoveAccountPartial.cshtml" />
     <Content Include="Features\Account\Manage\_SetPasswordPartial.cshtml" />
-    <Content Include="Features\Account\ExternalLoginConfirmation.cshtml" />
-    <Content Include="Features\Account\ExternalLoginFailure.cshtml" />
+    <Content Include="Features\Account\Shared\ExternalLoginConfirmation.cshtml" />
+    <Content Include="Features\Account\Shared\ExternalLoginFailure.cshtml" />
     <Content Include="Features\Account\Login\Login.cshtml" />
     <Content Include="Features\Account\Manage\Manage.cshtml" />
     <Content Include="Features\Account\Register\Index.cshtml" />

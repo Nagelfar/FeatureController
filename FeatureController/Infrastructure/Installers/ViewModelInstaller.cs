@@ -1,4 +1,5 @@
 ﻿using Castle.MicroKernel.Registration;
+using FeatureController.Features.Bar.Projections;
 using FeatureController.Features.Foo.Projections;
 using System;
 using System.Collections.Generic;
@@ -13,6 +14,8 @@ namespace FeatureController.Infrastructure.Installers
         {
             container.Register(
                 Component.For < FooProjection>()
+                    .LifestyleSingleton(),
+                Component.For<BarProjection>()
                     .LifestyleSingleton()
                 );
         }

@@ -11,7 +11,7 @@ namespace FeatureController.Infrastructure.Installers
     {
         public void Install(Castle.Windsor.IWindsorContainer container, Castle.MicroKernel.SubSystems.Configuration.IConfigurationStore store)
         {
-            container.Register(Classes.FromThisAssembly()
+            container.Register(Classes.FromAssemblyInThisApplication()
                 .BasedOn<IController>()
                 .LifestyleTransient()
                 );

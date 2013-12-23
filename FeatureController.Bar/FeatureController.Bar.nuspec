@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<package >
+  <metadata>
+    <id>FeatureController.Bar</id>
+    <version>0.2.3.4</version>
+    <title>Feature Bar</title>
+    <authors>CF</authors>
+    <owners>CF</owners>
+    <licenseUrl>http://bar.feature.com/lic</licenseUrl>
+    <projectUrl>http://bar.feature.com/proj</projectUrl>
+    <iconUrl>http://bar.feature.com/icon</iconUrl>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <description>Huhu!</description>
+    <releaseNotes>Summary of changes made!</releaseNotes>
+    <copyright>Copyright 2013</copyright>
+    <tags>Web, Feature</tags>
+  </metadata>
+  
+  <files>
+    <file src="bin\FeatureController.Bar.dll"  target="lib\net40" />
+    <file src="Views\**\*.*" target="Content\Views\" exclude="**\*.cs" /> 
+  </files>
+</package>

@@ -5,6 +5,15 @@ VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController", "FeatureController\FeatureController.csproj", "{FE4C9C0B-0FDC-43FC-AABF-A9B1ED0A96BE}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController.Bar", "FeatureController.Bar\FeatureController.Bar.csproj", "{43ACAD3E-D776-44EA-8806-A1ADE69EE914}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{77E9943E-F474-4524-B77D-3494072CC1FE}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +24,10 @@ Global
 		{FE4C9C0B-0FDC-43FC-AABF-A9B1ED0A96BE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE4C9C0B-0FDC-43FC-AABF-A9B1ED0A96BE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE4C9C0B-0FDC-43FC-AABF-A9B1ED0A96BE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43ACAD3E-D776-44EA-8806-A1ADE69EE914}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43ACAD3E-D776-44EA-8806-A1ADE69EE914}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43ACAD3E-D776-44EA-8806-A1ADE69EE914}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43ACAD3E-D776-44EA-8806-A1ADE69EE914}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

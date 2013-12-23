@@ -1,0 +1,14 @@
+﻿@model FeatureController.Features.Foo.ViewModels.FooEditViewModel
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(false)
+
+    @Html.HiddenFor(x => x.Id)
+    <div class="control-group">
+        @Html.LabelFor(x => x.FooEingabe)
+        @Html.EditorFor(x => x.FooEingabe)
+    </div>
+
+    <button type="submit" class="btn">Speichern</button>
+}

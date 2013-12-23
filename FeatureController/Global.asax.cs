@@ -40,7 +40,7 @@ namespace FeatureController
             FeatureSwitcher.Configuration.Features
                 .Are
                 .ConfiguredBy.Custom(x=>File.Exists( Path.Combine( HttpRuntime.AppDomainAppPath,"App_Data",x.Value)))
-                .NamedBy.TypeName()
+                .NamedBy.TypeName()                
                 ;
         }
 

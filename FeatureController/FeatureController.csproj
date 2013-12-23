@@ -176,6 +176,7 @@
     <Compile Include="Features\Foo\Dtos\FooModel.cs" />
     <Compile Include="Features\Foo\FooController.cs" />
     <Compile Include="Features\Foo\Projections\FooProjection.cs" />
+    <Compile Include="Features\Foo\Queries\FindById.cs" />
     <Compile Include="Features\Foo\Queries\FindSpecialFoos.cs" />
     <Compile Include="Features\Foo\ViewModels\FooEditViewModel.cs" />
     <Compile Include="Features\Foo\ViewModels\FooListViewModel.cs" />
@@ -186,10 +187,15 @@
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\FeatureBundles.cs" />
     <Compile Include="Infrastructure\FeatureViewLocationRazorViewEngine.cs" />
+    <Compile Include="Infrastructure\IMediator.cs" />
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
     <Compile Include="Features\Account\ViewModels\AccountViewModels.cs" />
     <Compile Include="Features\Account\IdentityModels.cs" />
+    <Compile Include="Infrastructure\Installers\MediatorQueryInstaller.cs" />
     <Compile Include="Infrastructure\Installers\ViewModelInstaller.cs" />
+    <Compile Include="Infrastructure\IQuery.cs" />
+    <Compile Include="Infrastructure\IQueryHandler.cs" />
+    <Compile Include="Infrastructure\Mediator.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>

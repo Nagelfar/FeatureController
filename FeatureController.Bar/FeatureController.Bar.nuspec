@@ -18,6 +18,6 @@
   
   <files>
     <file src="bin\FeatureController.Bar.dll"  target="lib\net40" />
-    <file src="Views\**\*.*" target="Content\Features\Bar\Views\" exclude="**\*.cs" /> 
+    <file src="Views\**\*.*" target="Content\Features\Bar\Views" exclude="**\*.cs" /> 
   </files>
 </package>

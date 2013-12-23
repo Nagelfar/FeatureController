@@ -20,9 +20,6 @@ namespace FeatureController.Infrastructure.Installers
 
                 Classes.FromAssemblyInThisApplication()
                     .BasedOn(typeof(IQueryHandler<,>))
-                    //.WithService.Select(
-                    //    (x,y)=>y
-                    //)
                     .WithServiceAllInterfaces()
                     .LifestyleTransient()
                     );
@@ -30,11 +27,7 @@ namespace FeatureController.Infrastructure.Installers
 
         private class TypeDFactoryMediatorSelector : DefaultTypedFactoryComponentSelector
         {
-            //protected override string GetComponentName(System.Reflection.MethodInfo method, object[] arguments)
-            //{
-            //    var name= base.GetComponentName(method, arguments);
-            //    return name;
-            //}
+
             protected override Type GetComponentType(System.Reflection.MethodInfo method, object[] arguments)
             {
                 var type= base.GetComponentType(method, arguments);
@@ -46,13 +39,7 @@ namespace FeatureController.Infrastructure.Installers
                     );
                 return newtype;
             }
-            //protected override Func<Castle.MicroKernel.IKernelInternal, Castle.MicroKernel.IReleasePolicy, object> BuildFactoryComponent(System.Reflection.MethodInfo method, string componentName, Type componentType, System.Collections.IDictionary additionalArguments)
-            //{
-            //    //var c = base.BuildFactoryComponent(method, componentName, componentType, additionalArguments);
-            //    //return c;
-
-            //    return (kernel, release) => kernel.Resolve(componentType);
-            //}
+            
         }
     }
 }

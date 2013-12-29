@@ -172,34 +172,20 @@
     <Compile Include="Queries\FindSpecialFoos.cs" />
     <Compile Include="ViewModels\BarEditViewModel.cs" />
     <Compile Include="ViewModels\BarListViewModel.cs" />
-    <Compile Include="Views\Edit\Edit.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Edit.cshtml</DependentUpon>
-    </Compile>
-    <Compile Include="Views\Index\Index.generated.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>Index.cshtml</DependentUpon>
-    </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Views\Edit\Edit.js" />
+    <Content Include="Views\Index\Index.css" />
     <Content Include="Views\Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Edit\Edit.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Edit.generated.cs</LastGenOutput>
-    </Content>
+    <Content Include="Views\Edit\Edit.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Views\Index\Index.cshtml">
-      <Generator>RazorGenerator</Generator>
-      <LastGenOutput>Index.generated.cs</LastGenOutput>
-    </Content>
+    <Content Include="Views\Index\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="FeatureController.Bar.nuspec" />

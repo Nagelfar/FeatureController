@@ -27,7 +27,7 @@ namespace FeatureController.Features.Bar
         {
          //   var response = _mediator.Response(new SpecialBarsModulo { Modulo = 2 });
 
-            return View();
+            return View(_projection.Bars.Select(BarListViewModel.Create).ToArray());
         }
 
         [HttpGet]

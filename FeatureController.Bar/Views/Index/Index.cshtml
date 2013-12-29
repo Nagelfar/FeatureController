@@ -1,9 +1,9 @@
-﻿@model IEnumerable<FeatureController.Features.Foo.ViewModels.FooListViewModel>
+﻿@model IEnumerable<FeatureController.Features.Bar.ViewModels.BarListViewModel>
 
 <table>
     <thead>
         <tr>
-            <th>@Html.DisplayNameFor(x => x.MyFoo)</th>
+            <th>@Html.DisplayNameFor(x => x.MyBar)</th>
             <th>@Html.DisplayNameFor(x => x.MyF00)</th>
             <th>Details</th>
         </tr>
@@ -12,7 +12,7 @@
         @foreach (var m in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(_ => m.MyFoo)</td>
+                <td>@Html.DisplayFor(_ => m.MyBar)</td>
                 <td>@Html.DisplayFor(_ => m.MyF00)</td>
                 <td>@Html.ActionLink("Edit", "Edit", new { id = m.MyF00 })</td>
             </tr>

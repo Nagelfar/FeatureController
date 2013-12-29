@@ -8,6 +8,7 @@ using System.Web.Mvc;
 using FeatureController.Features.Bar.Projections;
 using FeatureController.Features.Bar.Queries;
 using FeatureController.Features.Bar.ViewModels;
+
 namespace FeatureController.Features.Bar
 {
     public class BarController : Controller, FeatureSwitcher.IFeature

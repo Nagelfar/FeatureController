@@ -13,12 +13,12 @@ namespace FeatureController.Infrastructure
         private static IEnumerable<string> PathForFeatureBundle(RouteData routeData, string extension)
         {
             yield return string.Format(
-                "~/Features/{0}/Views/Shared/Index.{1}",
+                "~/Features/{0}/Views/Shared/{0}.{1}",
                 routeData.GetRequiredString("controller"),
                 extension
                 );
             yield return string.Format(
-                "~/Features/{0}/Views/{1}/Index.{2}",
+                "~/Features/{0}/Views/{1}/{1}.{2}",
                 routeData.GetRequiredString("controller"),
                 routeData.GetRequiredString("action"),
                 extension

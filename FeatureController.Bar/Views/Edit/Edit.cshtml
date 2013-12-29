@@ -1,4 +1,4 @@
-﻿@model FeatureController.Features.Foo.ViewModels.FooEditViewModel
+﻿@model FeatureController.Features.Bar.ViewModels.BarEditViewModel
 
 @using (Html.BeginForm())
 {
@@ -6,8 +6,8 @@
 
     @Html.HiddenFor(x => x.Id)
     <div class="control-group">
-        @Html.LabelFor(x => x.FooEingabe)
-        @Html.EditorFor(x => x.FooEingabe)
+        @Html.LabelFor(x => x.BarEingabe)
+        @Html.EditorFor(x => x.BarEingabe)
     </div>
 
     <button type="submit" class="btn">Speichern</button>

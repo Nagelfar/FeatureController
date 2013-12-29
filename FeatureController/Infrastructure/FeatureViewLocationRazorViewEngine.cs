@@ -11,11 +11,12 @@ namespace FeatureController.Infrastructure
         public FeatureViewLocationRazorViewEngine()
         {
             var featureFolderViewLocationFormats = new[]
-          {
+            {
               // Features/Account/Views/Login/Login.cshtml
                 "~/Features/{1}/Views/{0}/{0}.cshtml",
+
                 // Features/Account/Views/Login/Index.cshtml
-                "~/Features/{1}/Views/{0}/Index.cshtml",
+                //"~/Features/{1}/Views/{0}/Index.cshtml",
                 // Features/Account/Views/Login.cshtml
                 "~/Features/{1}/Views/{0}.cshtml",
                 // Features/Account/Views/Shared/Login.cshtml

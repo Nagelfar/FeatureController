@@ -206,8 +206,9 @@
         <WebProjectProperties>
           <UseIIS>True</UseIIS>
           <AutoAssignPort>True</AutoAssignPort>
-          <DevelopmentServerPort>3305</DevelopmentServerPort>
+          <DevelopmentServerPort>3055</DevelopmentServerPort>
           <DevelopmentServerVPath>/</DevelopmentServerVPath>
+
           <IISUrl>http://localhost:3055/features/bar</IISUrl>
           <NTLMAuthentication>False</NTLMAuthentication>
           <UseCustomServer>False</UseCustomServer>

@@ -1,0 +1,17 @@
+   <site name="FeatureController" id="10">
+                <application path="/" applicationPool="Clr4IntegratedAppPool">
+                    <virtualDirectory path="/" physicalPath="c:\users\fm\documents\visual studio 2013\Projects\FeatureController\FeatureController" />
+                    <!--<virtualDirectory path="/features" physicalPath="C:\Users\fm\documents\visual studio 2013\Projects\FeatureController" />-->
+					        <virtualDirectory path="/features/bar" physicalPath="C:\Users\fm\documents\visual studio 2013\Projects\FeatureController\FeatureController.Bar" />
+                    
+                </application>
+               <!-- <application path="/features/bar" applicationPool="Clr4IntegratedAppPool">
+                    <virtualDirectory path="/" physicalPath="C:\Users\fm\documents\visual studio 2013\Projects\FeatureController\FeatureController.Bar" />
+                </application>-->
+                <!--<application path="/features/bar" applicationPool="Clr4IntegratedAppPool">
+                    <virtualDirectory path="/features/bar" physicalPath="C:\Users\fm\Documents\Visual Studio 2013\Projects\FeatureController\FeatureController.Bar" />
+                </application>-->
+                <bindings>
+                    <binding protocol="http" bindingInformation="*:3055:localhost" />
+                </bindings>
+            </site>

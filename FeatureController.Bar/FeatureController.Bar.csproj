@@ -188,7 +188,7 @@
     <Content Include="Views\Index\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="FeatureController.Bar.nuspec" />
+    <None Include="FeatureController.Bar.nuspec" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

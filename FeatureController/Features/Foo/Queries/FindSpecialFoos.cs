@@ -2,6 +2,7 @@
 using FeatureController.Features.Foo.Projections;
 using FeatureController.Features.Foo.ViewModels;
 using FeatureController.Infrastructure;
+using FeatureController.Common;
 using System;
 using System.Collections.Generic;
 using System.Linq;

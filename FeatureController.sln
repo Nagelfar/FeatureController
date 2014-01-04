@@ -24,6 +24,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 		IISExpressSettings.txt = IISExpressSettings.txt
 	EndProjectSection
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController.Common", "FeatureController.Common\FeatureController.Common.csproj", "{9A4D875E-60FD-4B85-9FCA-01B62DCCD484}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -38,6 +40,10 @@ Global
 		{43ACAD3E-D776-44EA-8806-A1ADE69EE914}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{43ACAD3E-D776-44EA-8806-A1ADE69EE914}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{43ACAD3E-D776-44EA-8806-A1ADE69EE914}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9A4D875E-60FD-4B85-9FCA-01B62DCCD484}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9A4D875E-60FD-4B85-9FCA-01B62DCCD484}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9A4D875E-60FD-4B85-9FCA-01B62DCCD484}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9A4D875E-60FD-4B85-9FCA-01B62DCCD484}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

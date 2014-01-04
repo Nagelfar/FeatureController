@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 
-namespace FeatureController.Infrastructure
+namespace FeatureController.Common
 {
     public interface IQueryHandler<in TQuery, out TResponse>
         where TQuery : IQuery<TResponse>

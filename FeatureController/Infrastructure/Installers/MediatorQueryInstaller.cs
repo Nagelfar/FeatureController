@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
-
+using FeatureController.Common;
 using Castle.Facilities.TypedFactory;
 namespace FeatureController.Infrastructure.Installers
 {

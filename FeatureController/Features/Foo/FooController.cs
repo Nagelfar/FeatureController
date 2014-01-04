@@ -1,5 +1,7 @@
 ﻿using FeatureController.Features.Foo.Dtos;
 using FeatureController.Features.Foo.ViewModels;
+using FeatureController.Common;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;

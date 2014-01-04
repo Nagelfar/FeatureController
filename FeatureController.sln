@@ -4,6 +4,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 12.0.20827.3
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController", "FeatureController\FeatureController.csproj", "{FE4C9C0B-0FDC-43FC-AABF-A9B1ED0A96BE}"
+	ProjectSection(ProjectDependencies) = postProject
+		{43ACAD3E-D776-44EA-8806-A1ADE69EE914} = {43ACAD3E-D776-44EA-8806-A1ADE69EE914}
+	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController.Bar", "FeatureController.Bar\FeatureController.Bar.csproj", "{43ACAD3E-D776-44EA-8806-A1ADE69EE914}"
 EndProject

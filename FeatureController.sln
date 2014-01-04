@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController", "Featur
 		{43ACAD3E-D776-44EA-8806-A1ADE69EE914} = {43ACAD3E-D776-44EA-8806-A1ADE69EE914}
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController.Bar", "FeatureController.Bar\FeatureController.Bar.csproj", "{43ACAD3E-D776-44EA-8806-A1ADE69EE914}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "FeatureController.Features.Bar", "FeatureController.Bar\FeatureController.Features.Bar.csproj", "{43ACAD3E-D776-44EA-8806-A1ADE69EE914}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{77E9943E-F474-4524-B77D-3494072CC1FE}"
 	ProjectSection(SolutionItems) = preProject

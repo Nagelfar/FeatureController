@@ -59,10 +59,6 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
-    <Reference Include="FeatureController.Features.Bar, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\FeatureController.Bar.0.2.3.4\lib\net40\FeatureController.Features.Bar.dll</HintPath>
-    </Reference>
     <Reference Include="FeatureSwitcher">
       <HintPath>..\packages\FeatureSwitcher.1.0.1\lib\4.0\FeatureSwitcher.dll</HintPath>
     </Reference>
@@ -216,8 +212,6 @@
     <Content Include="Features\Account\Views\Register\Index.js" />
     <Content Include="Features\Account\Views\Shared\Index.css" />
     <Content Include="Features\Account\Views\Shared\Index.js" />
-    <Content Include="Features\Bar\Views\Edit\Edit.js" />
-    <Content Include="Features\Bar\Views\Index\Index.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\glyphicons-halflings-white.png" />
@@ -227,7 +221,6 @@
     <Content Include="Features\Foo\Views\Index\Index.cshtml" />
     <Content Include="Features\Foo\Views\Edit\Edit.cshtml" />
     <Content Include="Features\Bar\Views\Index\Index.cshtml" />
-    <Content Include="Features\Bar\Views\Edit\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FeatureController.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />
@@ -271,6 +264,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\FeatureController.Bar\FeatureController.Features.Bar.csproj">
+      <Project>{43acad3e-d776-44ea-8806-a1ade69ee914}</Project>
+      <Name>FeatureController.Features.Bar</Name>
+    </ProjectReference>
     <ProjectReference Include="..\FeatureController.Common\FeatureController.Common.csproj">
       <Project>{9a4d875e-60fd-4b85-9fca-01b62dccd484}</Project>
       <Name>FeatureController.Common</Name>

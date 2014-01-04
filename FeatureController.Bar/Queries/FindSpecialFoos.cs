@@ -1,4 +1,5 @@
-﻿using FeatureController.Features.Bar.Dtos;
+﻿using FeatureController.Common;
+using FeatureController.Features.Bar.Dtos;
 using FeatureController.Features.Bar.Projections;
 using FeatureController.Features.Bar.ViewModels;
 using System;
@@ -9,13 +10,13 @@ using System.Web;
 namespace FeatureController.Features.Bar.Queries
 {
     public class SpecialBarsModulo
-        //: IQuery<IReadOnlyCollection<BarListViewModel>>
+        : IQuery<IReadOnlyCollection<BarListViewModel>>
     {
         public int Modulo { get; set; }
     }
 
     public class FindSpecialBars
-        //:IQueryHandler<SpecialBarsModulo,IReadOnlyCollection<BarListViewModel>>
+        :IQueryHandler<SpecialBarsModulo,IReadOnlyCollection<BarListViewModel>>
     {
         private readonly BarProjection _projection;
         public FindSpecialBars(BarProjection projection)

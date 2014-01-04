@@ -11,6 +11,7 @@ using FeatureController.Features.Bar.ViewModels;
 
 namespace FeatureController.Features.Bar
 {
+    [RouteArea("BarArea")]
     public class BarController : Controller, FeatureSwitcher.IFeature
     {
         //private readonly IMediator _mediator;

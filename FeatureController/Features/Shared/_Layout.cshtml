@@ -29,7 +29,7 @@
                         }
                         @if (Feature<FeatureController.Features.Bar.BarController>.Is().Enabled)
                         {
-                            <li>@Html.ActionLink("Bar?", "Index", "Bar")</li>
+                            <li>@Html.ActionLink("Bar?", "Index", "Bar", new { area = "BarArea" }, new { })</li>
                         }
 
                         <li>@Html.ActionLink("About", "About", "Home")</li>

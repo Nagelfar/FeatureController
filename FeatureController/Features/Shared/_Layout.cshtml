@@ -27,6 +27,11 @@
                         {
                             <li>@Html.ActionLink("Foos?", "Index", "Foo")</li>
                         }
+                        @if (Feature<FeatureController.Features.Bar.BarController>.Is().Enabled)
+                        {
+                            <li>@Html.ActionLink("Bar?", "Index", "Bar")</li>
+                        }
+
                         <li>@Html.ActionLink("About", "About", "Home")</li>
                         <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     </ul>

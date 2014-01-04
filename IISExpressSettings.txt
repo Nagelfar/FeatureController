@@ -1,3 +1,5 @@
+read:http://www.codeproject.com/Articles/396569/Make-Web-Development-Easier-with-IIS-Express#MultipleSites
+
    <site name="FeatureController" id="10">
                 <application path="/" applicationPool="Clr4IntegratedAppPool">
                     <virtualDirectory path="/" physicalPath="c:\users\fm\documents\visual studio 2013\Projects\FeatureController\FeatureController" />

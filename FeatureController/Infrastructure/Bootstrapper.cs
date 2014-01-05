@@ -37,7 +37,7 @@ namespace FeatureController.Infrastructure
             return this;
         }
 
-        public Bootstrapper InitFeatureSwitcher()
+        public Bootstrapper InitFeatures()
         {
             FeatureSwitcher.Configuration.Features
                 .Are
@@ -50,7 +50,7 @@ namespace FeatureController.Infrastructure
 
         public void Boot()
         {
-            //
+            // gogogogogo
         }
 
         public Bootstrapper InitMvc()

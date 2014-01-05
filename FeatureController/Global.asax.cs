@@ -18,7 +18,7 @@ namespace FeatureController
         protected void Application_Start()
         {            
             Bootstrapper.Bootstrap()
-                .InitFeatureSwitcher()
+                .InitFeatures()
                 .InitMvc()
                 .FeatureizeMvc()
                 .InitWindsor()

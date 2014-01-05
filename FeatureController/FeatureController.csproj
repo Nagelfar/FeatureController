@@ -195,7 +195,7 @@
     <Compile Include="Infrastructure\FeatureViewLocationRazorViewEngine.cs" />
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
     <Compile Include="Features\Account\ViewModels\AccountViewModels.cs" />
-    <Compile Include="Features\Account\IdentityModels.cs" />
+    <Compile Include="Features\Account\Dtos\IdentityModels.cs" />
     <Compile Include="Infrastructure\Installers\MediatorQueryInstaller.cs" />
     <Compile Include="Infrastructure\Installers\ViewModelInstaller.cs" />
     <Compile Include="Infrastructure\Mediator.cs" />
@@ -208,10 +208,10 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="favicon.ico" />
-    <Content Include="Features\Account\Views\Register\Index.css" />
-    <Content Include="Features\Account\Views\Register\Index.js" />
-    <Content Include="Features\Account\Views\Shared\Index.css" />
-    <Content Include="Features\Account\Views\Shared\Index.js" />
+    <Content Include="Features\Account\Views\Register\Register.css" />
+    <Content Include="Features\Account\Views\Register\Register.js" />
+    <Content Include="Features\Account\Views\Shared\Account.css" />
+    <Content Include="Features\Account\Views\Shared\Account.js" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\glyphicons-halflings-white.png" />
@@ -254,7 +254,7 @@
     <Content Include="Features\Account\Views\Shared\ExternalLoginFailure.cshtml" />
     <Content Include="Features\Account\Views\Login\Login.cshtml" />
     <Content Include="Features\Account\Views\Manage\Manage.cshtml" />
-    <Content Include="Features\Account\Views\Register\Index.cshtml" />
+    <Content Include="Features\Account\Views\Register\Register.cshtml" />
     <Content Include="Features\Shared\_LoginPartial.cshtml" />
   </ItemGroup>
   <ItemGroup>

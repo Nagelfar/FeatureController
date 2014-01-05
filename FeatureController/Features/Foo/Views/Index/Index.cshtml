@@ -12,8 +12,8 @@
         @foreach (var m in Model)
         {
             <tr>
-                <td>@Html.DisplayFor(_ => m.MyFoo)</td>
-                <td>@Html.DisplayFor(_ => m.MyF00)</td>
+                <td>@Html.DisplayFor(_ => m.MyFoo,"FooDisplay")</td>
+                <td>@Html.DisplayFor(_ => m.MyF00,"IntDisplay")</td>
                 <td>@Html.ActionLink("Edit", "Edit", new { id = m.MyF00 })</td>
             </tr>
         }

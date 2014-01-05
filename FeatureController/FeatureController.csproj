@@ -178,6 +178,8 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Areas\Administration\AdministrationAreaRegistration.cs" />
+    <Compile Include="Areas\Administration\Features\FooBar\FooBarController.cs" />
     <Compile Include="Features\Account\AccountController.cs" />
     <Compile Include="Features\Foo\Dtos\FooModel.cs" />
     <Compile Include="Features\Foo\FooController.cs" />
@@ -223,6 +225,9 @@
     <Content Include="Features\Bar\Views\Index\Index.cshtml" />
     <Content Include="Features\Foo\Views\Shared\DisplayTemplates\FooDisplay.cshtml" />
     <Content Include="Features\Shared\DisplayTemplates\IntDisplay.cshtml" />
+    <Content Include="Areas\Administration\Features\_ViewStart.cshtml" />
+    <Content Include="Areas\Administration\Features\Web.config" />
+    <Content Include="Areas\Administration\Features\FooBar\Views\Index.cshtml" />
     <None Include="Properties\PublishProfiles\FeatureController.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

@@ -8,7 +8,7 @@ namespace FeatureController.Infrastructure
 {
     public class Mediator:IMediator
     {
-        private IFindQueryHandlers _queryHandlers;
+        private readonly IFindQueryHandlers _queryHandlers;
         public interface IFindQueryHandlers{
             dynamic Handler<TResponse>(IQuery<TResponse> query);
         }

@@ -12,11 +12,14 @@ namespace FeatureController.Infrastructure
     {
         private static IEnumerable<string> PathForFeatureBundle(RouteData routeData, string extension)
         {
+            //  "~/Features/Account/Views/Shared/Account.js"
             yield return string.Format(
                 "~/Features/{0}/Views/Shared/{0}.{1}",
                 routeData.GetRequiredString("controller"),
                 extension
                 );
+
+            //  "~/Features/Account/Views/Register/Register.js"
             yield return string.Format(
                 "~/Features/{0}/Views/{1}/{1}.{2}",
                 routeData.GetRequiredString("controller"),

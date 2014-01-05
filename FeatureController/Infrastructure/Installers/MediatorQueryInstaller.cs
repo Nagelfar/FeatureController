@@ -7,16 +7,16 @@ using FeatureController.Common;
 using Castle.Facilities.TypedFactory;
 namespace FeatureController.Infrastructure.Installers
 {
-    public class MediatorQueryInstaller:IWindsorInstaller
+    public class MediatorQueryInstaller : IWindsorInstaller
     {
         public void Install(Castle.Windsor.IWindsorContainer container, Castle.MicroKernel.SubSystems.Configuration.IConfigurationStore store)
         {
             container.Register(
                 Component.For<IMediator>()
-                    .ImplementedBy < Mediator>(),
+                    .ImplementedBy<Mediator>(),
 
                 Component.For<Mediator.IFindQueryHandlers>()
-                    .AsFactory(new TypeDFactoryMediatorSelector() ),
+                    .AsFactory(new TypeDFactoryMediatorSelector()),
 
                 Classes.FromAssemblyInThisApplication()
                     .BasedOn(typeof(IQueryHandler<,>))
@@ -30,16 +30,14 @@ namespace FeatureController.Infrastructure.Installers
 
             protected override Type GetComponentType(System.Reflection.MethodInfo method, object[] arguments)
             {
-                var type= base.GetComponentType(method, arguments);
-
-               var newtype= typeof(IQueryHandler<,>)
-                    .MakeGenericType(
-                        arguments[0].GetType(),
-                        method.GetGenericArguments()[0]
-                    );
+                var newtype = typeof(IQueryHandler<,>)
+                     .MakeGenericType(
+                         arguments[0].GetType(),
+                         method.GetGenericArguments()[0]
+                     );
                 return newtype;
             }
-            
+
         }
     }
 }

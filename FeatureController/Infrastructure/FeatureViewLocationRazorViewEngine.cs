@@ -8,26 +8,38 @@ namespace FeatureController.Infrastructure
 {
     public class FeatureViewLocationRazorViewEngine : RazorViewEngine
     {
-        public FeatureViewLocationRazorViewEngine()
-        {
-            var featureFolderViewLocationFormats = new[]
+        private static readonly string[] DefaultFeatureFolderViewLocationFormats = new[]
             {
               // Features/Account/Views/Login/Login.cshtml
                 "~/Features/{1}/Views/{0}/{0}.cshtml",
 
                 // Features/Account/Views/Login/Index.cshtml
                 //"~/Features/{1}/Views/{0}/Index.cshtml",
+
                 // Features/Account/Views/Login.cshtml
                 "~/Features/{1}/Views/{0}.cshtml",
+
                 // Features/Account/Views/Shared/Login.cshtml
                 "~/Features/{1}/Views/Shared/{0}.cshtml",
+
                 // Features/Shared/Login.cshtml
                 "~/Features/Shared/{0}.cshtml",
           };
 
-            ViewLocationFormats = featureFolderViewLocationFormats;
-            MasterLocationFormats = featureFolderViewLocationFormats;
-            PartialViewLocationFormats = featureFolderViewLocationFormats;
+        public FeatureViewLocationRazorViewEngine()
+        {
+            ViewLocationFormats = DefaultFeatureFolderViewLocationFormats;
+
+            var shellViewLocation = new[]{
+                 "~/Views/Shell/{0}.cshtml",
+            };
+
+            MasterLocationFormats = DefaultFeatureFolderViewLocationFormats
+                .Concat(shellViewLocation)
+                .ToArray();
+            PartialViewLocationFormats = DefaultFeatureFolderViewLocationFormats
+                .Concat(shellViewLocation)
+                .ToArray();
         }
     }
 }

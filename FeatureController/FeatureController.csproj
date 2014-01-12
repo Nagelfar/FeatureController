@@ -253,10 +253,10 @@
     <Content Include="Features\Home\Views\About.cshtml" />
     <Content Include="Features\Home\Views\Contact.cshtml" />
     <Content Include="Features\Home\Views\Index.cshtml" />
-    <Content Include="Features\Account\Views\Shared\_ChangePasswordPartial.cshtml" />
+    <Content Include="Features\Account\Views\Manage\_ChangePasswordPartial.cshtml" />
     <Content Include="Features\Account\Views\Shared\_ExternalLoginsListPartial.cshtml" />
     <Content Include="Features\Account\Views\Shared\_RemoveAccountPartial.cshtml" />
-    <Content Include="Features\Account\Views\Shared\_SetPasswordPartial.cshtml" />
+    <Content Include="Features\Account\Views\Manage\_SetPasswordPartial.cshtml" />
     <Content Include="Features\Account\Views\Shared\ExternalLoginConfirmation.cshtml" />
     <Content Include="Features\Account\Views\Shared\ExternalLoginFailure.cshtml" />
     <Content Include="Features\Account\Views\Login\Login.cshtml" />

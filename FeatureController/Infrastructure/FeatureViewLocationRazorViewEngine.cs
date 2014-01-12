@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Web;
 using System.Web.Mvc;
 
@@ -61,30 +62,62 @@ namespace FeatureController.Infrastructure
                 .ToArray();
         }
 
+        private const string FeaturePartialViewFormat = "~/Features/{1}/Views/{0}/{2}.cshtml";
+        private const string AreaFeaturePartialViewFormat = "Areas/{3}/Features/{1}/Views/{0}/{2}.cshtml";
 
 
-        //public virtual ViewEngineResult FindPartialView(ControllerContext controllerContext, string partialViewName, bool useCache)
-        //{
-        //    if (controllerContext == null)
-        //    {
-        //        throw new ArgumentNullException("controllerContext");
-        //    }
-        //    if (String.IsNullOrEmpty(partialViewName))
-        //    {
-        //        throw new ArgumentException(MvcResources.Common_NullOrEmpty, "partialViewName");
-        //    }
+        private string FindFeaturePartialView(ControllerContext controllerContext, string partialViewName, bool useCache)
+        {
+            var controller = controllerContext.RouteData.GetRequiredString("controller");
+            var action = controllerContext.RouteData.GetRequiredString("action");
 
-        //    string[] searched;
-        //    string controllerName = controllerContext.RouteData.GetRequiredString("controller");
-        //    string partialPath = GetPath(controllerContext, PartialViewLocationFormats, AreaPartialViewLocationFormats, "PartialViewLocationFormats", partialViewName, controllerName, CacheKeyPrefixPartial, useCache, out searched);
+            var cacheKey = string.Format("FeaturePartialView:{0}:{1}:{2}", controller, action, partialViewName);
 
-        //    if (String.IsNullOrEmpty(partialPath))
-        //    {
-        //        return new ViewEngineResult(searched);
-        //    }
+            if (useCache)
+            {
+                var cached = base.ViewLocationCache.GetViewLocation(controllerContext.HttpContext, cacheKey);
+                return cached;
+            }
+            else
+            {
+                var potentialPath = string.Format(FeaturePartialViewFormat, action, controller, partialViewName);
 
-        //    return new ViewEngineResult(CreatePartialView(controllerContext, partialPath), this);
-        //}
+                if (controllerContext.RouteData.DataTokens.ContainsKey("area"))
+                {
+                    var area = controllerContext.RouteData.DataTokens["area"];
+                    potentialPath = string.Format(FeaturePartialViewFormat, action, controller, partialViewName, area);
+                }
+
+                if (FileExists(controllerContext, potentialPath))
+                {
+                    base.ViewLocationCache.InsertViewLocation(controllerContext.HttpContext, cacheKey, potentialPath);
+                    return potentialPath;
+                }
+            }
+            return null;
+        }
+
+        private MethodInfo GetPathMethod = typeof(VirtualPathProviderViewEngine).GetMethod("GetPath", System.Reflection.BindingFlags.Instance | System.Reflection.BindingFlags.NonPublic);
+        public override ViewEngineResult FindPartialView(ControllerContext controllerContext, string partialViewName, bool useCache)
+        {
+            if (controllerContext == null)
+            {
+                throw new ArgumentNullException("controllerContext");
+            }
+            if (String.IsNullOrEmpty(partialViewName))
+            {
+                throw new ArgumentException("Must not be null or empty", "partialViewName");
+            }
+
+            var partialPath = FindFeaturePartialView(controllerContext, partialViewName, useCache);
+
+            if (String.IsNullOrEmpty(partialPath))
+            {
+                return base.FindPartialView(controllerContext, partialViewName, useCache);
+            }
+
+            return new ViewEngineResult(CreatePartialView(controllerContext, partialPath), this);
+        }
 
         //private string GetPath(ControllerContext controllerContext, string[] locations, string[] areaLocations, string locationsPropertyName, string name, string controllerName, string cacheKeyPrefix, bool useCache, out string[] searchedLocations)
         //{

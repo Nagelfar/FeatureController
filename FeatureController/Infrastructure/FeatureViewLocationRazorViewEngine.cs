@@ -44,6 +44,7 @@ namespace FeatureController.Infrastructure
 
             var shellViewLocation = new[]{
                  "~/Views/Shell/{0}.cshtml",
+                 "~/Views/Shared/{0}.cshtml",
             };
 
             MasterLocationFormats = DefaultFeatureFolderViewLocationFormats
@@ -71,7 +72,14 @@ namespace FeatureController.Infrastructure
             var controller = controllerContext.RouteData.GetRequiredString("controller");
             var action = controllerContext.RouteData.GetRequiredString("action");
 
+            var area = default(object);
+            if (controllerContext.RouteData.DataTokens.ContainsKey("area"))
+                area = controllerContext.RouteData.DataTokens["area"];
+
             var cacheKey = string.Format("FeaturePartialView:{0}:{1}:{2}", controller, action, partialViewName);
+
+            if (area != default(object))
+                cacheKey += ":" + area;
 
             if (useCache)
             {
@@ -82,9 +90,8 @@ namespace FeatureController.Infrastructure
             {
                 var potentialPath = string.Format(FeaturePartialViewFormat, action, controller, partialViewName);
 
-                if (controllerContext.RouteData.DataTokens.ContainsKey("area"))
+                if (area!=default(object))
                 {
-                    var area = controllerContext.RouteData.DataTokens["area"];
                     potentialPath = string.Format(FeaturePartialViewFormat, action, controller, partialViewName, area);
                 }
 

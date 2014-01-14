@@ -224,7 +224,7 @@
     <Content Include="Features\Foo\Views\Edit\Edit.cshtml" />
     <Content Include="Features\Bar\Views\Index\Index.cshtml" />
     <Content Include="Features\Foo\Views\Shared\DisplayTemplates\FooDisplay.cshtml" />
-    <Content Include="Features\Shared\DisplayTemplates\IntDisplay.cshtml" />
+    <Content Include="Views\Shared\DisplayTemplates\IntDisplay.cshtml" />
     <Content Include="Areas\Administration\Features\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Features\Web.config" />
     <Content Include="Areas\Administration\Features\FooBar\Views\Index.cshtml" />
@@ -248,7 +248,7 @@
     </Content>
     <Content Include="Features\Web.config" />
     <Content Include="Features\_ViewStart.cshtml" />
-    <Content Include="Views\Shell\Error.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
     <Content Include="Views\Shell\_Layout.cshtml" />
     <Content Include="Features\Home\Views\About.cshtml" />
     <Content Include="Features\Home\Views\Contact.cshtml" />

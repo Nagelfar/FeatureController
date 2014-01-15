@@ -96,6 +96,16 @@
               Condition="'$(OS)' == 'Windows_NT' And Exists('$(PackagesConfig)')" />
     </Target>
 
+  <Target Name="RefreshContent" AfterTargets="RestorePackages">
+    <PropertyGroup>
+      <MyPackages>@(package)</MyPackages>
+    </PropertyGroup>
+    <ItemGroup>
+      
+      <Features  Include="$(PackagesConfig)" />
+    </ItemGroup>
+  </Target>
+
     <Target Name="BuildPackage" DependsOnTargets="CheckPrerequisites">
         <Exec Command="$(BuildCommand)" 
               Condition=" '$(OS)' != 'Windows_NT' " />

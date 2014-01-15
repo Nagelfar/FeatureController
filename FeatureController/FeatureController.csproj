@@ -59,6 +59,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="FeatureController.Features.Bar">
+      <HintPath>..\packages\FeatureController.Bar.0.2.3.7\lib\net40\FeatureController.Features.Bar.dll</HintPath>
+    </Reference>
     <Reference Include="FeatureSwitcher">
       <HintPath>..\packages\FeatureSwitcher.1.0.1\lib\4.0\FeatureSwitcher.dll</HintPath>
     </Reference>
@@ -214,6 +217,8 @@
     <Content Include="Features\Account\Views\Register\Register.js" />
     <Content Include="Features\Account\Views\Shared\Account.css" />
     <Content Include="Features\Account\Views\Shared\Account.js" />
+    <Content Include="Features\Bar\Views\Edit\Edit.js" />
+    <Content Include="Features\Bar\Views\Index\Index.css" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />
     <Content Include="img\glyphicons-halflings-white.png" />
@@ -228,6 +233,7 @@
     <Content Include="Areas\Administration\Features\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Features\Web.config" />
     <Content Include="Areas\Administration\Features\FooBar\Views\Index.cshtml" />
+    <Content Include="Features\Bar\Views\Edit\Edit.cshtml" />
     <None Include="Properties\PublishProfiles\FeatureController.pubxml" />
     <None Include="Scripts\jquery-1.8.2.intellisense.js" />
     <Content Include="Scripts\jquery-1.8.2.js" />

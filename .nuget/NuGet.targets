@@ -96,14 +96,23 @@
               Condition="'$(OS)' == 'Windows_NT' And Exists('$(PackagesConfig)')" />
     </Target>
 
-  <Target Name="RefreshContent" AfterTargets="RestorePackages">
-    <PropertyGroup>
-      <MyPackages>@(package)</MyPackages>
-    </PropertyGroup>
+  <Target Name="BuildFeatures">
+    <MakeDir Directories="$(SolutionDir)artifacts\pkg" ContinueOnError="true"/>
+
     <ItemGroup>
-      
-      <Features  Include="$(PackagesConfig)" />
+      <FeatureControllerPackages Include="$(SolutionDir)FeatureController.Bar\FeatureController.Bar.nuspec"/>
     </ItemGroup>
+    
+    <PropertyGroup>
+      <BuildFeaturePackagesCommand>"$(SolutionDir).nuget\NuGet.exe" pack "@(FeatureControllerPackages)" -OutputDirectory "$(SolutionDir)artifacts\pkg"</BuildFeaturePackagesCommand>
+    </PropertyGroup>
+    <Exec Command="$(BuildFeaturePackagesCommand)"/>
+  </Target>
+  <Target Name="RefreshFeatures" AfterTargets="BuildFeatures">
+    <PropertyGroup>
+      <UpdateCommand>$(NuGetCommand) update "$(SolutionDir)FeatureController.sln" -config "$(SolutionDir).nuget\Nuget.config"   -id FeatureController.Bar</UpdateCommand>
+    </PropertyGroup>
+    <Exec Command="$(UpdateCommand)"/>
   </Target>
 
     <Target Name="BuildPackage" DependsOnTargets="CheckPrerequisites">

@@ -60,7 +60,7 @@
       <HintPath>..\packages\EntityFramework.6.0.2\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
     <Reference Include="FeatureController.Features.Bar">
-      <HintPath>..\packages\FeatureController.Bar.0.2.3.7\lib\net40\FeatureController.Features.Bar.dll</HintPath>
+      <HintPath>..\packages\FeatureController.Bar.0.2.3.11\lib\net40\FeatureController.Features.Bar.dll</HintPath>
     </Reference>
     <Reference Include="FeatureSwitcher">
       <HintPath>..\packages\FeatureSwitcher.1.0.1\lib\4.0\FeatureSwitcher.dll</HintPath>
@@ -324,4 +324,7 @@
   </Target>
   <Target Name="AfterBuild">
   </Target> -->
+  <Target Name="BeforeBuild">
+    <CallTarget Targets="BuildFeatures" />
+  </Target>
 </Project>

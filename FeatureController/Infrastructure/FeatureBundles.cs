@@ -1,4 +1,5 @@
-﻿using System;
+﻿using FeatureSwitcher;
+using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -44,41 +45,58 @@ namespace FeatureController.Infrastructure
             return System.Web.Optimization.Styles.Render(path.ToArray());
         }
 
-        public static void FindAndRegisterAllFeatureBundles(BundleCollection bundles)
+        public static void FindAndRegisterAllFeatureBundles(HttpContext context, BundleCollection bundles, IEnumerable<IController> features)
         {
             var websitePath = HttpRuntime.AppDomainAppPath;
             var basePath = new DirectoryInfo(Path.Combine(websitePath, "Features"));
 
-            var scriptBundles = FindJSFiles(websitePath, basePath);
-            var styleBundles = FindStyleFiles(websitePath, basePath);
+            var featureFolder = "~/Features";
 
-            foreach (var featureBundles in scriptBundles.Concat(styleBundles))
+            var featureBundles = features.SelectMany(x => FindBundles(context, x, featureFolder));
+
+            foreach (var featureBundle in featureBundles)
             {
-                bundles.Add(featureBundles);
+                bundles.Add(featureBundle);
             }
         }
 
-        private static IEnumerable<Bundle> FindJSFiles(string websitePath, DirectoryInfo basePath)
+        private static IEnumerable<Bundle> FindBundles(HttpContext context, IController feature, string featureFolder)
+        {
+            var featureName = Feature.Configuration.Current.NamingConvention(feature.GetType()).Value;
+            var folderName = featureFolder + "/" + featureName.Replace("Controller", "");
+            var basePath = new DirectoryInfo(context.Server.MapPath(folderName));
+
+            if (!basePath.Exists)
+                return Enumerable.Empty<Bundle>();
+
+            return FindStyleFiles(folderName, basePath)
+                .Concat(FindJSFiles(folderName, basePath)
+                );
+        }
+
+        private static IEnumerable<Bundle> FindJSFiles(string featureFolder, DirectoryInfo basePath)
         {
             var jsFiles = basePath.EnumerateFiles("*.js", SearchOption.AllDirectories);
 
             foreach (var jsFile in jsFiles)
             {
                 var virtualPath = jsFile.FullName
-                    .Replace(websitePath, "~/")
+                    .Replace(basePath.FullName, featureFolder)
                     .Replace(@"\", "/");
+
                 yield return new ScriptBundle(virtualPath).Include(virtualPath);
             }
         }
-        private static IEnumerable<Bundle> FindStyleFiles(string websitePath, DirectoryInfo basePath)
+        private static IEnumerable<Bundle> FindStyleFiles(string featureFolder, DirectoryInfo basePath)
         {
             var styleFiles = basePath.EnumerateFiles("*.css", SearchOption.AllDirectories);
 
             foreach (var styleFile in styleFiles)
             {
                 var virtualPath = styleFile.FullName
-                    .Replace(websitePath, "~/")
+                    .Replace(basePath.FullName, featureFolder)
                     .Replace(@"\", "/");
+
                 yield return new StyleBundle(virtualPath).Include(virtualPath);
             }
         }

@@ -24,24 +24,22 @@ namespace FeatureController.Infrastructure
         }
 
         public static Bootstrapper Bootstrap()
-        {            
+        {
             var container = new WindsorContainer();
             container.AddFacility<TypedFactoryFacility>();
 
-            return new Bootstrapper( container);
-        }
+            container.Install(Castle.Windsor.Installer.FromAssembly.This());
 
-        public Bootstrapper InitWindsor(){
-            _container.Install(Castle.Windsor.Installer.FromAssembly.This());
-
-            return this;
+            return new Bootstrapper(container);
         }
 
         public Bootstrapper InitFeatures()
         {
             FeatureSwitcher.Configuration.Features
                 .Are
-                .ConfiguredBy.Custom(x => File.Exists(Path.Combine(HttpRuntime.AppDomainAppPath, "App_Data", x.Value)))
+                .ConfiguredBy.Custom(
+                    x => File.Exists(Path.Combine(HttpRuntime.AppDomainAppPath, "App_Data", x.Value))
+                )
                 .NamedBy.TypeName()
                 ;
 
@@ -67,8 +65,8 @@ namespace FeatureController.Infrastructure
         }
 
         public Bootstrapper FeatureizeMvc()
-        {
-            FeatureBundles.FindAndRegisterAllFeatureBundles(BundleTable.Bundles);
+        {            
+            FeatureBundles.FindAndRegisterAllFeatureBundles(HttpContext.Current, BundleTable.Bundles, _container.ResolveAll<IController>());
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new FeatureViewLocationRazorViewEngine());

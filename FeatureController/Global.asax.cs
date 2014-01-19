@@ -21,7 +21,6 @@ namespace FeatureController
                 .InitFeatures()
                 .InitMvc()
                 .FeatureizeMvc()
-                .InitWindsor()
                 .Boot();
 
         }

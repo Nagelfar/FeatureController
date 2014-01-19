@@ -96,22 +96,33 @@
               Condition="'$(OS)' == 'Windows_NT' And Exists('$(PackagesConfig)')" />
     </Target>
 
-  <Target Name="BuildFeatures">
+  <Target Name="BuildFeatures" AfterTargets="Build">
     <MakeDir Directories="$(SolutionDir)artifacts\pkg" ContinueOnError="true"/>
 
     <ItemGroup>
-      <FeatureControllerPackages Include="$(SolutionDir)FeatureController.Bar\FeatureController.Bar.nuspec"/>
+      <FeatureControllerPackages Include="$(ProjectDir)FeatureController.Features.*.nuspec" />
     </ItemGroup>
     
     <PropertyGroup>
       <BuildFeaturePackagesCommand>"$(SolutionDir).nuget\NuGet.exe" pack "@(FeatureControllerPackages)" -OutputDirectory "$(SolutionDir)artifacts\pkg"</BuildFeaturePackagesCommand>
     </PropertyGroup>
-    <Exec Command="$(BuildFeaturePackagesCommand)"/>
+    
+    <Exec Command="$(BuildFeaturePackagesCommand)" Condition="@(FeatureControllerPackages) != ''"/>
   </Target>
-  <Target Name="RefreshFeatures" AfterTargets="BuildFeatures">
+  <Target Name="RefreshFeatures">
+    <ItemGroup>
+      <FeaturePackages Include="$(SolutionDir)**\FeatureController.Features.*.nuspec" Exclude="$(SolutionDir)packages\**"/>
+    </ItemGroup>
+
+    <Message Text="Potential Packages: @(FeaturePackages)" Importance="high"/>
+    
     <PropertyGroup>
-      <UpdateCommand>$(NuGetCommand) update "$(SolutionDir)FeatureController.sln" -config "$(SolutionDir).nuget\Nuget.config"   -id FeatureController.Bar</UpdateCommand>
+      <FeaturePackageNames>@(FeaturePackages->'%(filename)')</FeaturePackageNames>
+      <UpdateCommand>$(NuGetCommand) update "$(SolutionDir)FeatureController.sln" -config "$(SolutionDir).nuget\Nuget.config"   -id $(FeaturePackageNames)</UpdateCommand>
     </PropertyGroup>
+
+    <Message Text="Packages to refresh: $(FeaturePackageNames)" Importance="high"/>
+    
     <Exec Command="$(UpdateCommand)"/>
   </Target>
 

@@ -182,7 +182,7 @@
     <Content Include="Views\Index\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="FeatureController.Bar.nuspec" />
+    <None Include="FeatureController.Features.Bar.nuspec" />
     <Content Include="Web.config" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>

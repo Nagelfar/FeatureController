@@ -14,20 +14,41 @@ namespace FeatureController.Infrastructure
     {
         private static IEnumerable<string> PathForFeatureBundle(RouteData routeData, string extension)
         {
-            //  "~/Features/Account/Views/Shared/Account.js"
-            yield return string.Format(
-                "~/Features/{0}/Views/Shared/{0}.{1}",
-                routeData.GetRequiredString("controller"),
-                extension
-                );
+            if (!routeData.DataTokens.ContainsKey("area"))
+            {
+                //  "~/Features/Account/Views/Shared/Account.js"
+                yield return string.Format(
+                    "~/Features/{0}/Views/Shared/{0}.{1}",
+                    routeData.GetRequiredString("controller"),
+                    extension
+                    );
 
-            //  "~/Features/Account/Views/Register/Register.js"
-            yield return string.Format(
-                "~/Features/{0}/Views/{1}/{1}.{2}",
-                routeData.GetRequiredString("controller"),
-                routeData.GetRequiredString("action"),
-                extension
-                );
+                //  "~/Features/Account/Views/Register/Register.js"
+                yield return string.Format(
+                    "~/Features/{0}/Views/{1}/{1}.{2}",
+                    routeData.GetRequiredString("controller"),
+                    routeData.GetRequiredString("action"),
+                    extension
+                    );
+            }
+            else
+            {
+                 yield return string.Format(
+                    "~/Areas/{1}/Features/{0}/Views/Shared/{0}.{2}",
+                    routeData.GetRequiredString("controller"),
+                    routeData.DataTokens["area"],
+                    extension
+                    );
+
+                //  "~/Features/Account/Views/Register/Register.js"
+                yield return string.Format(
+                    "~/Areas/{2}/Features/{0}/Views/{1}/{1}.{3}",
+                    routeData.GetRequiredString("controller"),
+                    routeData.GetRequiredString("action"),
+                    routeData.DataTokens["area"],   
+                    extension
+                    );
+            }
         }
 
         public static IHtmlString Scripts(RouteData routeData)
@@ -61,18 +82,69 @@ namespace FeatureController.Infrastructure
         }
 
         private static IEnumerable<Bundle> FindBundles(HttpContext context, IController feature, string featureFolder)
+        {            
+            var basePath = FindFolder(context, feature, featureFolder);
+
+            if (!basePath.Item2.Exists)
+            {
+
+                return Enumerable.Empty<Bundle>();
+
+            }
+            return FindStyleFiles(basePath.Item1, basePath.Item2)
+                .Concat(FindJSFiles(basePath.Item1, basePath.Item2)
+                );
+        }
+
+
+
+        private static Tuple<string,DirectoryInfo> FindFolder(HttpContext context, IController feature, string featureFolder)
         {
-            var featureName = Feature.Configuration.Current.NamingConvention(feature.GetType()).Value;
-            var folderName = featureFolder + "/" + featureName.Replace("Controller", "");
+            var featureName = Feature.Configuration.Current.NamingConvention(feature.GetType())
+                .Value
+                .Replace("Controller", "");
+
+            var folderName = featureFolder + "/" + featureName;
             var basePath = new DirectoryInfo(context.Server.MapPath(folderName));
 
             if (!basePath.Exists)
-                return Enumerable.Empty<Bundle>();
+            {
+                var area = GetAreaNameAndNamespace(RouteTable.Routes)
+                    .SingleOrDefault(x => feature.GetType().Namespace.StartsWith(x.Item2));
 
-            return FindStyleFiles(folderName, basePath)
-                .Concat(FindJSFiles(folderName, basePath)
-                );
+
+                if (area != null)
+                {
+                    folderName = "~/Areas/" + area.Item1 + "/Features/" + featureName;
+                    basePath = new DirectoryInfo(context.Server.MapPath(folderName));
+                }
+
+
+            }
+
+            return Tuple.Create(folderName,basePath);
         }
+        private static string ExtractSingleValue(object potentialList)
+        {
+            var list = potentialList as IEnumerable<string>;
+            if (list != null)
+                return list.FirstOrDefault();
+
+            return potentialList as string;
+        }
+
+        private static IEnumerable<Tuple<string, string>> GetAreaNameAndNamespace(RouteCollection routeEntries)
+        {
+            var areas = routeEntries
+                .OfType<Route>()
+                .Where(x => x.DataTokens != null)
+                .Where(x => x.DataTokens.Any(token => token.Key == "area"))
+                .Select(x => Tuple.Create(ExtractSingleValue(x.DataTokens["area"]), ExtractSingleValue(x.DataTokens["Namespaces"]).Replace("*", "").TrimEnd('.')))
+                ;
+            return areas.ToArray();
+
+        }
+
 
         private static IEnumerable<Bundle> FindJSFiles(string featureFolder, DirectoryInfo basePath)
         {

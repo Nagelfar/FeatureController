@@ -215,6 +215,7 @@
     <Compile Include="Features\Foo\ViewModels\FooEditViewModel.cs" />
     <Compile Include="Features\Foo\ViewModels\FooListViewModel.cs" />
     <Compile Include="Features\Home\HomeController.cs" />
+    <Compile Include="Features\Notification\NotificationController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -260,6 +261,7 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Content\bootstrap-theme.css.map" />
     <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Features\Notification\Views\List.cshtml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
     <Content Include="Scripts\jquery-1.9.0.js" />
     <Content Include="Scripts\jquery-1.9.0.min.js" />

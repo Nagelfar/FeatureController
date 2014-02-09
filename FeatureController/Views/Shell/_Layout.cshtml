@@ -40,10 +40,10 @@
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown" id="notifications">
-                        <a href="#" class="dropdown-toggle " data-toggle="dropdown">
+                        <a href="@Url.Action("List","Notification")" class="dropdown-toggle " data-toggle="dropdown">
                             <span class="glyphicon glyphicon-info-sign" style="vertical-align:text-top"></span>
                             <span class="badge"></span>
-                        </a>
+                        </a>                       
                         <ul class="dropdown-menu">
                         
                         </ul>
@@ -75,11 +75,14 @@
 
     <script>
         $(function () {
-            
+            $.ajaxSetup({
+                cache: false
+            });
+
             var notification = $.connection.notificationHub;
             // Create a function that the hub can call to broadcast messages.
             notification.client.sendMessage = function (message,count) {
-                $('#notifications .dropdown-menu').append($('<li></li>').text(message));
+                //$('#notifications .dropdown-menu').append($('<li></li>').text(message));
                 if (count % 3 == 0) {
                     
                 }
@@ -87,7 +90,11 @@
             };
 
             $.connection.hub.start().done(function () {
-                alert('connected');
+               // alert('connected');
+            });
+
+            $('#notifications .dropdown-toggle').click(function () {
+                $('#notifications .dropdown-menu').load($(this).attr('href'));
             });
         })
     </script>

@@ -218,6 +218,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Hubs\NotificationHub.cs" />
     <Compile Include="Infrastructure\AjaxRedirectAttribute.cs" />
     <Compile Include="Infrastructure\Bootstrapper.cs" />
     <Compile Include="Infrastructure\FeatureBundles.cs" />
@@ -225,6 +226,7 @@
     <Compile Include="Infrastructure\Installers\ControllerInstaller.cs" />
     <Compile Include="Features\Account\ViewModels\AccountViewModels.cs" />
     <Compile Include="Features\Account\Dtos\IdentityModels.cs" />
+    <Compile Include="Infrastructure\Installers\HubInstaller.cs" />
     <Compile Include="Infrastructure\Installers\MediatorQueryInstaller.cs" />
     <Compile Include="Infrastructure\Installers\ViewModelInstaller.cs" />
     <Compile Include="Infrastructure\Mediator.cs" />

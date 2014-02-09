@@ -12,26 +12,39 @@ using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Optimization;
 using FluentValidation.Mvc;
+using Owin;
+using FeatureController.Hubs;
+using Microsoft.AspNet.SignalR;
 
 namespace FeatureController.Infrastructure
 {
     public class Bootstrapper
     {
         private readonly IWindsorContainer _container;
+        private static Bootstrapper _bootstrapper;
 
         private Bootstrapper(IWindsorContainer container)
         {
             _container = container;
         }
 
+        private static object Lock = new object();
+
         public static Bootstrapper Bootstrap()
         {
-            var container = new WindsorContainer();
-            container.AddFacility<TypedFactoryFacility>();
+            lock (Lock)
+            {
+                if (_bootstrapper == null)
+                {
+                    var container = new WindsorContainer();
+                    container.AddFacility<TypedFactoryFacility>();
 
-            container.Install(Castle.Windsor.Installer.FromAssembly.This());
+                    container.Install(Castle.Windsor.Installer.FromAssembly.This());
 
-            return new Bootstrapper(container);
+                    _bootstrapper = new Bootstrapper(container);
+                }
+                return _bootstrapper;
+            }
         }
 
         public Bootstrapper InitFeatures()
@@ -49,6 +62,7 @@ namespace FeatureController.Infrastructure
 
         public void Boot()
         {
+            
             // gogogogogo
         }
 
@@ -66,12 +80,12 @@ namespace FeatureController.Infrastructure
             {
                 x.AddImplicitRequiredValidator = false;
             });
-            
+
             return this;
         }
 
         public Bootstrapper FeatureizeMvc()
-        {            
+        {
             FeatureBundles.FindAndRegisterAllFeatureBundles(HttpContext.Current, BundleTable.Bundles, _container.ResolveAll<IController>());
 
             ViewEngines.Engines.Clear();
@@ -107,5 +121,18 @@ namespace FeatureController.Infrastructure
         }
 
 
+
+        public Bootstrapper InitSignalR()
+        {
+
+
+            GlobalHost.DependencyResolver = new SignalR.Castle.Windsor.WindsorDependencyResolver(_container);
+            
+         
+
+            NotificationHub.StartNotification();
+
+            return this;
+        }
     }
 }

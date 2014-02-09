@@ -43,6 +43,9 @@
     </div>
     <div class="container body-content">
         @RenderBody()
+        <div id="notifications">
+            <ul></ul>
+        </div>
         <hr />
         <footer>
             <p>&copy; @DateTime.Now.Year - My ASP.NET Application</p>
@@ -53,12 +56,27 @@
         "~/bundles/jquery",
         "~/bundles/jqueryajax",
         "~/bundles/jqueryval",
-        "~/bundles/common"
-        
+        "~/bundles/common",
+        "~/bundles/signalr"
         )
     @Scripts.Render("~/bundles/bootstrap")
     @FeatureController.Infrastructure.FeatureBundles.Scripts(this.ViewContext.RouteData)
 
+    <script src="@Url.Content("~/signalr/hubs")"></script>
+
+    <script>
+        $(function () {
+            var notification = $.connection.notificationHub;
+            // Create a function that the hub can call to broadcast messages.
+            notification.client.sendMessage = function (message) {
+                $('#notifications ul').append($('<li></li>').text(message));
+            };
+
+            $.connection.hub.start().done(function () {
+                alert('connected');
+            });
+        })
+    </script>
     @RenderSection("scripts", required: false)
 </body>
 

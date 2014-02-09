@@ -36,6 +36,11 @@ namespace FeatureController
             bundles.Add(new ScriptBundle("~/bundles/common").Include(
                 "~/Scripts/common.js"
                 ));
+
+
+            bundles.Add(new ScriptBundle("~/bundles/signalr")
+                .Include("~/Scripts/jquery.signalR-{version}.js")
+                );
         }
 
       

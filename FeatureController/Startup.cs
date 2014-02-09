@@ -1,4 +1,5 @@
-﻿using Microsoft.Owin;
+﻿using FeatureController.Infrastructure;
+using Microsoft.Owin;
 using Owin;
 
 [assembly: OwinStartupAttribute(typeof(FeatureController.Startup))]
@@ -9,6 +10,8 @@ namespace FeatureController
         public void Configuration(IAppBuilder app) 
         {
             ConfigureAuth(app);
+
+            app.MapSignalR(new Microsoft.AspNet.SignalR.HubConfiguration());
         }
     }
 }

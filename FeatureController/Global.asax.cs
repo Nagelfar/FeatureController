@@ -19,6 +19,7 @@ namespace FeatureController
         {            
             Bootstrapper.Bootstrap()
                 .InitFeatures()
+                .InitSignalR()
                 .InitMvc()
                 .FeatureizeMvc()
                 .Boot();

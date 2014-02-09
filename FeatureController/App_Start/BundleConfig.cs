@@ -32,6 +32,10 @@ namespace FeatureController
                       "~/Content/bootstrap.css",
                       "~/Content/site.css",
                       "~/Content/bootstrap-responsive.css"));
+
+            bundles.Add(new ScriptBundle("~/bundles/common").Include(
+                "~/Scripts/common.js"
+                ));
         }
 
       

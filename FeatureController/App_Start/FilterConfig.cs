@@ -9,6 +9,7 @@ namespace FeatureController
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new AjaxRedirectAttribute());
             filters.Add(new ValidatorActionFilter());
         }
     }

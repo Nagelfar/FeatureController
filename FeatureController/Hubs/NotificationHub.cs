@@ -15,14 +15,14 @@ namespace FeatureController.Hubs
             var counter = 0;
             _timer = new Timer(s =>
             {
-                SendMessage("huhu " + counter++);
+                SendMessage("huhu " + counter++,counter);
             }, null, 10000, 5000);
 
         }
 
-        public static void SendMessage(string message)
+        public static void SendMessage(string message, int count)
         {
-            GlobalHost.ConnectionManager.GetHubContext<NotificationHub>().Clients.All.sendMessage(message);
+            GlobalHost.ConnectionManager.GetHubContext<NotificationHub>().Clients.All.sendMessage(message, count);
         }
     }
 }

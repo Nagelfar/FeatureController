@@ -12,52 +12,80 @@ namespace FeatureController.Infrastructure
 {
     public static class FeatureBundles
     {
+        private static IEnumerable<string> PathForFeatureBundle(string action, string controller, string extension)
+        {
+            //  "~/Features/Account/Views/Shared/Account.js"
+            yield return string.Format(
+                "~/Features/{0}/Views/Shared/{0}.{1}",
+                controller,
+                extension
+                );
+
+            //  "~/Features/Account/Views/Register/Register.js"
+            yield return string.Format(
+                "~/Features/{0}/Views/{1}/{1}.{2}",
+                controller,
+                action,
+                extension
+                );
+        }
+        private static IEnumerable<string> PathForFeatureBundle(string action, string controller, string area, string extension)
+        {
+            yield return string.Format(
+                "~/Areas/{1}/Features/{0}/Views/Shared/{0}.{2}",
+                controller,
+                area,
+                extension
+                );
+
+            //  "~/Features/Account/Views/Register/Register.js"
+            yield return string.Format(
+                "~/Areas/{2}/Features/{0}/Views/{1}/{1}.{3}",
+                controller,
+                action,
+                area,
+                extension
+                );
+        }
+
         private static IEnumerable<string> PathForFeatureBundle(RouteData routeData, string extension)
         {
             if (!routeData.DataTokens.ContainsKey("area"))
             {
-                //  "~/Features/Account/Views/Shared/Account.js"
-                yield return string.Format(
-                    "~/Features/{0}/Views/Shared/{0}.{1}",
-                    routeData.GetRequiredString("controller"),
-                    extension
-                    );
-
-                //  "~/Features/Account/Views/Register/Register.js"
-                yield return string.Format(
-                    "~/Features/{0}/Views/{1}/{1}.{2}",
-                    routeData.GetRequiredString("controller"),
+                return PathForFeatureBundle(
                     routeData.GetRequiredString("action"),
-                    extension
-                    );
+                    routeData.GetRequiredString("controller"),
+                    extension);
             }
             else
             {
-                 yield return string.Format(
-                    "~/Areas/{1}/Features/{0}/Views/Shared/{0}.{2}",
-                    routeData.GetRequiredString("controller"),
-                    routeData.DataTokens["area"],
-                    extension
-                    );
-
-                //  "~/Features/Account/Views/Register/Register.js"
-                yield return string.Format(
-                    "~/Areas/{2}/Features/{0}/Views/{1}/{1}.{3}",
-                    routeData.GetRequiredString("controller"),
+                return PathForFeatureBundle(
                     routeData.GetRequiredString("action"),
-                    routeData.DataTokens["area"],   
-                    extension
-                    );
+                    routeData.GetRequiredString("controller"),
+                    routeData.DataTokens["area"] as string,
+                    extension);
             }
         }
-
-        public static IHtmlString Scripts(RouteData routeData)
+        private static IHtmlString GetRenderedScriptBundles(IEnumerable<string> potentialBundles)
         {
-            var path = PathForFeatureBundle(routeData, "js")
-                .Where(x => BundleTable.Bundles.GetBundleFor(x) != null);
+            var path = potentialBundles
+                  .Where(x => BundleTable.Bundles.GetBundleFor(x) != null);
 
             return System.Web.Optimization.Scripts.Render(path.ToArray());
+
         }
+        public static IHtmlString Scripts(RouteData routeData)
+        {
+            return GetRenderedScriptBundles(PathForFeatureBundle(routeData, "js"));
+        }
+        public static IHtmlString Scripts(string action, string controller, string area = null)
+        {
+            if (!string.IsNullOrEmpty(area))
+                return GetRenderedScriptBundles(PathForFeatureBundle(action, controller, area, "js"));
+
+            return GetRenderedScriptBundles(PathForFeatureBundle(action, controller, "js"));
+        }
+
         public static IHtmlString Styles(RouteData routeData)
         {
             var path = PathForFeatureBundle(routeData, "css")
@@ -82,7 +110,7 @@ namespace FeatureController.Infrastructure
         }
 
         private static IEnumerable<Bundle> FindBundles(HttpContext context, IController feature, string featureFolder)
-        {            
+        {
             var basePath = FindFolder(context, feature, featureFolder);
 
             if (!basePath.Item2.Exists)
@@ -98,7 +126,7 @@ namespace FeatureController.Infrastructure
 
 
 
-        private static Tuple<string,DirectoryInfo> FindFolder(HttpContext context, IController feature, string featureFolder)
+        private static Tuple<string, DirectoryInfo> FindFolder(HttpContext context, IController feature, string featureFolder)
         {
             var featureName = Feature.Configuration.Current.NamingConvention(feature.GetType())
                 .Value
@@ -122,7 +150,7 @@ namespace FeatureController.Infrastructure
 
             }
 
-            return Tuple.Create(folderName,basePath);
+            return Tuple.Create(folderName, basePath);
         }
         private static string ExtractSingleValue(object potentialList)
         {

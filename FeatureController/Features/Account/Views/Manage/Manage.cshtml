@@ -28,11 +28,12 @@
         @if (FeatureSwitcher.Feature<FeatureController.Features.Foo.FooController>.Is().Enabled)
         {
             <section id="foo-integration">
-                @Html.ActionLink("Foo?","Index","Foo")
+                @Html.ActionLink("Foo?", "Index", "Foo")
             </section>
         }
     </div>
 </div>
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
+    @FeatureController.Infrastructure.FeatureBundles.Scripts("Index", "Foo")
 }

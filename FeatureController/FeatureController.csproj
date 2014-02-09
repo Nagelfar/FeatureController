@@ -184,6 +184,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="App_Code\DefaultOptions.cs" />
+    <Content Include="App_Code\FeatureExtensions.cs" />
     <Compile Include="App_Start\BundleConfig.cs" />
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
@@ -227,6 +228,7 @@
     <Content Include="Features\Account\Views\Register\Register.js" />
     <Content Include="Features\Account\Views\Shared\Account.css" />
     <Content Include="Features\Account\Views\Shared\Account.js" />
+    <Content Include="Features\Foo\Views\Index\Index.js" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
     <Content Include="Content\Site.css" />

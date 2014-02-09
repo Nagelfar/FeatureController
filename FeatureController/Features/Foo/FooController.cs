@@ -45,7 +45,7 @@ namespace FeatureController.Features.Foo
                 return View(model);
 
             _projection.Foos.ElementAt(model.Id).Foo = model.FooEingabe;
-
+            
             return RedirectToAction("Index");
         }
     }

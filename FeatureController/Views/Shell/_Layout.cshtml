@@ -41,8 +41,10 @@
                 <ul class="nav navbar-nav navbar-right">
                     <li class="dropdown" id="notifications">
                         <a href="@Url.Action("List","Notification")" class="dropdown-toggle " data-toggle="dropdown">
-                            <span class="glyphicon glyphicon-info-sign" style="vertical-align:text-top"></span>
-                            <span class="badge"></span>
+                            <span >
+                                <span class="glyphicon glyphicon-info-sign" style="vertical-align:text-top"></span>
+                                <span class="number"></span>
+                            </span>
                         </a>                       
                         <ul class="dropdown-menu">
                         
@@ -84,9 +86,9 @@
             notification.client.sendMessage = function (message,count) {
                 //$('#notifications .dropdown-menu').append($('<li></li>').text(message));
                 if (count % 3 == 0) {
-                    
+                    $('#notifications .dropdown-toggle > span').toggleClass('text-danger');
                 }
-                $('#notifications .badge').text(count);
+                $('#notifications .number').text(count);
             };
 
             $.connection.hub.start().done(function () {

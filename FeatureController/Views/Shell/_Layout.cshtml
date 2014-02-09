@@ -18,7 +18,7 @@
                     <span class="icon-bar"></span>
                     <span class="icon-bar"></span>
                 </button>
-                @Html.ActionLink("Application name", "Index", "Home", new { area=""}, new { @class = "brand" })
+                @Html.ActionLink("Application name", "Index", "Home", new { area = "" }, new { @class = "brand" })
 
                 <div class="nav-collapse collapse">
                     <ul class="nav">
@@ -49,7 +49,10 @@
         </footer>
     </div>
 
-    @Scripts.Render("~/bundles/jquery")
+    @Scripts.Render(
+        "~/bundles/jquery",
+        "~/bundles/jqueryajax"
+        )
     @Scripts.Render("~/bundles/bootstrap")
     @FeatureController.Infrastructure.FeatureBundles.Scripts(this.ViewContext.RouteData)
 

@@ -204,6 +204,7 @@
     <Compile Include="Infrastructure\Installers\MediatorQueryInstaller.cs" />
     <Compile Include="Infrastructure\Installers\ViewModelInstaller.cs" />
     <Compile Include="Infrastructure\Mediator.cs" />
+    <Compile Include="Infrastructure\ValidatorActionFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
@@ -227,6 +228,9 @@
     <Content Include="Features\Foo\Views\Index\Index.cshtml" />
     <Content Include="Features\Foo\Views\Edit\Edit.cshtml" />
     <Content Include="Features\Foo\Views\Shared\DisplayTemplates\FooDisplay.cshtml" />
+    <Content Include="Scripts\Common.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
+    <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Views\Shared\DisplayTemplates\IntDisplay.cshtml" />
     <Content Include="Areas\Administration\Features\_ViewStart.cshtml" />
     <Content Include="Areas\Administration\Features\Web.config" />

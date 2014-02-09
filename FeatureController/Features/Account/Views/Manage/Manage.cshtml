@@ -25,6 +25,12 @@
 
             @Html.Action("ExternalLoginsList", new { ReturnUrl = ViewBag.ReturnUrl })
         </section>
+        @if (FeatureSwitcher.Feature<FeatureController.Features.Foo.FooController>.Is().Enabled)
+        {
+            <section id="foo-integration">
+                @Html.ActionLink("Foo?","Index","Foo")
+            </section>
+        }
     </div>
 </div>
 @section Scripts {

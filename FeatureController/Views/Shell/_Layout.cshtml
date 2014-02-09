@@ -51,7 +51,9 @@
 
     @Scripts.Render(
         "~/bundles/jquery",
-        "~/bundles/jqueryajax"
+        "~/bundles/jqueryajax",
+        "~/bundles/jqueryval"
+        
         )
     @Scripts.Render("~/bundles/bootstrap")
     @FeatureController.Infrastructure.FeatureBundles.Scripts(this.ViewContext.RouteData)

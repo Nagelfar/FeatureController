@@ -11,6 +11,7 @@ using FeatureSwitcher;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Optimization;
+using FluentValidation.Mvc;
 
 namespace FeatureController.Infrastructure
 {
@@ -61,6 +62,11 @@ namespace FeatureController.Infrastructure
 
             System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(new MvcControllerFactory(_container));
 
+            FluentValidationModelValidatorProvider.Configure(x =>
+            {
+                x.AddImplicitRequiredValidator = false;
+            });
+            
             return this;
         }
 

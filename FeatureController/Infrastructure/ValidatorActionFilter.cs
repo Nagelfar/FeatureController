@@ -11,6 +11,8 @@ namespace FeatureController.Infrastructure
     {
         public void OnActionExecuting(ActionExecutingContext filterContext)
         {
+            var filters=filterContext.ActionDescriptor.GetFilterAttributes(true);
+            if (filters.OfType<NormalValidationAttribute>().Any()) return;
             // Continue normally if the model is valid.
             if (filterContext.Controller.ViewData.ModelState.IsValid) return;
 

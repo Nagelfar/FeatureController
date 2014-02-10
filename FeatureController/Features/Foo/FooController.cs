@@ -38,6 +38,7 @@ namespace FeatureController.Features.Foo
             return View(FooEditViewModel.Create(_projection.Find(query)));
         }
 
+        [NormalValidation]
         [HttpPost]
         public ActionResult Edit(FooEditViewModel model)
         {

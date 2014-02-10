@@ -213,6 +213,7 @@
     <Compile Include="Infrastructure\Installers\MediatorQueryInstaller.cs" />
     <Compile Include="Infrastructure\Installers\ViewModelInstaller.cs" />
     <Compile Include="Infrastructure\Mediator.cs" />
+    <Compile Include="Infrastructure\NormalValidationAttribute.cs" />
     <Compile Include="Infrastructure\ValidatorActionFilter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />

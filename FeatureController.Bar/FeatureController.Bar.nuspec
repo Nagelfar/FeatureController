@@ -17,8 +17,7 @@
   </metadata>
   
   <files>
-    <file src="obj\Debug\FeatureController.Features.Bar.dll"  target="lib\net40" />
-    <file src="obj\Debug\FeatureController.Features.Bar.pdb"  target="lib\net40" />
+    <file src="obj/Debug/FeatureController.Features.Bar.*"  target="lib/net40" />    
     <file src="Views\**\*.*" target="Content\Features\Bar\Views" exclude="**\*.cs;**\web.config" /> 
   </files>
 </package>

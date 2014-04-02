@@ -10,7 +10,7 @@
         <BuildPackage Condition=" '$(BuildPackage)' == '' ">false</BuildPackage>
 
         <!-- Determines if package restore consent is required to restore packages -->
-        <RequireRestoreConsent Condition=" '$(RequireRestoreConsent)' != 'false' ">true</RequireRestoreConsent>
+        <RequireRestoreConsent Condition=" '$(RequireRestoreConsent)' != 'false' ">false</RequireRestoreConsent>
         
         <!-- Download NuGet.exe if it does not already exist -->
         <DownloadNuGetExe Condition=" '$(DownloadNuGetExe)' == '' ">false</DownloadNuGetExe>
@@ -24,7 +24,7 @@
             <PackageSource Include="https://my-nuget-source/nuget/" />
         -->
       <PackageSource Include="https://www.nuget.org/api/v2/" />
-      <PackageSource Include="$(SolutionDir)artifacts\pkg" />
+      <PackageSource Include="$(SolutionDir)artifacts/pkg" />
     </ItemGroup>
 
     <PropertyGroup Condition=" '$(OS)' == 'Windows_NT'">
@@ -36,7 +36,7 @@
     <PropertyGroup Condition=" '$(OS)' != 'Windows_NT'">
         <!-- We need to launch nuget.exe with the mono command if we're not on windows -->
         <NuGetToolsPath>$(SolutionDir).nuget</NuGetToolsPath>
-        <PackagesConfig>packages.config</PackagesConfig>
+        <PackagesConfig>$(SolutionDir)packages.config</PackagesConfig>
     </PropertyGroup>
     
     <PropertyGroup>

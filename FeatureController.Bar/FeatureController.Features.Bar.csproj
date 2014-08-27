@@ -230,24 +230,23 @@
   </ProjectExtensions>
   <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
   <PropertyGroup>
- <!--    <PostBuildEvent Condition=" '$(OS)' == 'Windows_NT'">if not exist "$(SolutionDir)artifacts\pkg" mkdir "$(SolutionDir)artifacts\pkg"
+    <!--    <PostBuildEvent Condition=" '$(OS)' == 'Windows_NT'">if not exist "$(SolutionDir)artifacts\pkg" mkdir "$(SolutionDir)artifacts\pkg"
 "$(SolutionDir).nuget\NuGet.exe" pack "$(ProjectDir)FeatureController.Bar.nuspec" -OutputDirectory "$(SolutionDir)artifacts\pkg"</PostBuildEvent>
   <PostBuildEvent Condition=" '$(OS)' != 'Windows_NT'  ">mkdir -p "$(SolutionDir)artifacts\pkg" ; mono runtime=v4.0.30319 "$(SolutionDir).nuget\NuGet.exe" pack "$(ProjectDir)FeatureController.Bar.nuspec" -OutputDirectory "$(SolutionDir)artifacts\pkg"</PostBuildEvent>
    -->
   </PropertyGroup>
+   <PropertyGroup Condition="'$(OS)' != 'Windows_NT' ">
+      <MonoStart>mono --runtime=v4.0.30319</MonoStart>
+    </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>-->
   <Target Name="AfterBuild">
-    <Exec Condition=" '$(OS)' == 'Windows_NT'" Command='if not exist "$(SolutionDir)artifacts\pkg" mkdir "$(SolutionDir)artifacts\pkg"
-"$(SolutionDir).nuget\NuGet.exe" pack "$(ProjectDir)FeatureController.Bar.nuspec" -OutputDirectory "$(SolutionDir)artifacts\pkg"'/>
-
-  <PropertyGroup>
-    <MonoStart>mono --runtime=v4.0.30319</MonoStart>
-  </PropertyGroup>
-
-    <Exec Condition=" '$(OS)' != 'Windows_NT'  " Command='mkdir -p "$(SolutionDir)artifacts\pkg"' IgnoreExitCode="True" WorkingDirectory="$(ProjectDir)" />
-    <Exec Condition=" '$(OS)' != 'Windows_NT'  " Command='$(MonoStart) "$(SolutionDir).nuget\NuGet.exe" pack "$(ProjectDir)FeatureController.Bar.nuspec" -OutputDirectory "$(SolutionDir)artifacts\pkg"' WorkingDirectory="$(ProjectDir)" />
-  </Target> 
+    <Exec Condition=" '$(OS)' == 'Windows_NT'" Command="if not exist &quot;$(SolutionDir)artifacts\pkg&quot; mkdir &quot;$(SolutionDir)artifacts\pkg&quot;&#xA;&quot;$(SolutionDir).nuget\NuGet.exe&quot; pack &quot;$(ProjectDir)FeatureController.Bar.nuspec&quot; -OutputDirectory &quot;$(SolutionDir)artifacts\pkg&quot;" />
+   
+    <!-- <Exec Condition=" '$(OS)' != 'Windows_NT'  " Command="mkdir -p &quot;$(SolutionDir)artifacts\pkg&quot;" IgnoreExitCode="True" WorkingDirectory="$(ProjectDir)" />
+    <Exec Condition=" '$(OS)' != 'Windows_NT'  " Command="$(MonoStart) &quot;$(SolutionDir).nuget\NuGet.exe&quot; pack &quot;$(ProjectDir)FeatureController.Bar.nuspec&quot; -OutputDirectory &quot;$(SolutionDir)artifacts\pkg&quot;" WorkingDirectory="$(ProjectDir)" />
+     -->
+  </Target>
 </Project>

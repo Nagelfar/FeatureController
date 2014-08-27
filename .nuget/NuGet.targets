@@ -43,7 +43,7 @@
         <!-- NuGet command -->
         <NuGetExePath Condition=" '$(NuGetExePath)' == '' ">$(NuGetToolsPath)\NuGet.exe</NuGetExePath>
         <PackageSources Condition=" $(PackageSources) == '' ">@(PackageSource)</PackageSources>
-        
+      <PackageSources>$(PackageSources);$(SolutionDir)artifacts\pkg;</PackageSources>
         <NuGetCommand Condition=" '$(OS)' == 'Windows_NT'">"$(NuGetExePath)"</NuGetCommand>
         <NuGetCommand Condition=" '$(OS)' != 'Windows_NT' ">mono --runtime=v4.0.30319 $(NuGetExePath)</NuGetCommand>
 
@@ -95,6 +95,36 @@
               LogStandardErrorAsError="true"
               Condition="'$(OS)' == 'Windows_NT' And Exists('$(PackagesConfig)')" />
     </Target>
+
+  <Target Name="BuildFeatures" AfterTargets="Build">
+    <MakeDir Directories="$(SolutionDir)artifacts\pkg" ContinueOnError="true"/>
+
+    <ItemGroup>
+      <FeatureControllerPackages Include="$(ProjectDir)FeatureController.Features.*.nuspec" />
+    </ItemGroup>
+    
+    <PropertyGroup>
+      <BuildFeaturePackagesCommand>"$(SolutionDir).nuget\NuGet.exe" pack "@(FeatureControllerPackages)" -OutputDirectory "$(SolutionDir)artifacts\pkg"</BuildFeaturePackagesCommand>
+    </PropertyGroup>
+    
+    <Exec Command="$(BuildFeaturePackagesCommand)" Condition="@(FeatureControllerPackages) != ''"/>
+  </Target>
+  <Target Name="RefreshFeatures">
+    <ItemGroup>
+      <FeaturePackages Include="$(SolutionDir)**\FeatureController.Features.*.nuspec" Exclude="$(SolutionDir)packages\**"/>
+    </ItemGroup>
+
+    <Message Text="Potential Packages: @(FeaturePackages)" Importance="high"/>
+    
+    <PropertyGroup>
+      <FeaturePackageNames>@(FeaturePackages->'%(filename)')</FeaturePackageNames>
+      <UpdateCommand>$(NuGetCommand) update "$(SolutionDir)FeatureController.sln" -config "$(SolutionDir).nuget\Nuget.config"   -id $(FeaturePackageNames)</UpdateCommand>
+    </PropertyGroup>
+
+    <Message Text="Packages to refresh: $(FeaturePackageNames)" Importance="high"/>
+    
+    <Exec Command="$(UpdateCommand)"/>
+  </Target>
 
     <Target Name="BuildPackage" DependsOnTargets="CheckPrerequisites">
         <Exec Command="$(BuildCommand)" 

@@ -13,6 +13,8 @@ namespace FeatureController.Infrastructure.Installers
         {
             container.Register(Classes.FromAssemblyInThisApplication()
                 .BasedOn<IController>()
+                .WithServiceSelf()
+                .WithServiceBase()
                 .LifestyleTransient()
                 );
         }

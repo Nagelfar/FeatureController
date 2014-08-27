@@ -3,6 +3,7 @@ read:http://www.codeproject.com/Articles/396569/Make-Web-Development-Easier-with
    <site name="FeatureController" id="10">
                 <application path="/" applicationPool="Clr4IntegratedAppPool">
                     <virtualDirectory path="/" physicalPath="c:\users\fm\documents\visual studio 2013\Projects\FeatureController\FeatureController" />
+					 <virtualDirectory path="/features/" physicalPath="c:\users\fm\documents\visual studio 2013\Projects\FeatureController\FeatureController\Features\" />
                     <!--<virtualDirectory path="/features" physicalPath="C:\Users\fm\documents\visual studio 2013\Projects\FeatureController" />-->
 					        <virtualDirectory path="/features/bar" physicalPath="C:\Users\fm\documents\visual studio 2013\Projects\FeatureController\FeatureController.Bar" />
                     

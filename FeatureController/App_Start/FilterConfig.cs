@@ -1,4 +1,5 @@
-﻿using System.Web;
+﻿using FeatureController.Infrastructure;
+using System.Web;
 using System.Web.Mvc;
 
 namespace FeatureController
@@ -8,6 +9,8 @@ namespace FeatureController
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new AjaxRedirectAttribute());
+            filters.Add(new ValidatorActionFilter());
         }
     }
 }

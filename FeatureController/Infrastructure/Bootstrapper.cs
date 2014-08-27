@@ -11,6 +11,7 @@ using FeatureSwitcher;
 using System.Web.Mvc;
 using System.Web.Routing;
 using System.Web.Optimization;
+using FluentValidation.Mvc;
 
 namespace FeatureController.Infrastructure
 {
@@ -24,24 +25,22 @@ namespace FeatureController.Infrastructure
         }
 
         public static Bootstrapper Bootstrap()
-        {            
+        {
             var container = new WindsorContainer();
             container.AddFacility<TypedFactoryFacility>();
 
-            return new Bootstrapper( container);
-        }
+            container.Install(Castle.Windsor.Installer.FromAssembly.This());
 
-        public Bootstrapper InitWindsor(){
-            _container.Install(Castle.Windsor.Installer.FromAssembly.This());
-
-            return this;
+            return new Bootstrapper(container);
         }
 
         public Bootstrapper InitFeatures()
         {
             FeatureSwitcher.Configuration.Features
                 .Are
-                .ConfiguredBy.Custom(x => File.Exists(Path.Combine(HttpRuntime.AppDomainAppPath, "App_Data", x.Value)))
+                .ConfiguredBy.Custom(
+                    x => File.Exists(Path.Combine(HttpRuntime.AppDomainAppPath, "App_Data", x.Value))
+                )
                 .NamedBy.TypeName()
                 ;
 
@@ -63,12 +62,17 @@ namespace FeatureController.Infrastructure
 
             System.Web.Mvc.ControllerBuilder.Current.SetControllerFactory(new MvcControllerFactory(_container));
 
+            FluentValidationModelValidatorProvider.Configure(x =>
+            {
+                x.AddImplicitRequiredValidator = false;
+            });
+            
             return this;
         }
 
         public Bootstrapper FeatureizeMvc()
-        {
-            FeatureBundles.FindAndRegisterAllFeatureBundles(BundleTable.Bundles);
+        {            
+            FeatureBundles.FindAndRegisterAllFeatureBundles(HttpContext.Current, BundleTable.Bundles, _container.ResolveAll<IController>());
 
             ViewEngines.Engines.Clear();
             ViewEngines.Engines.Add(new FeatureViewLocationRazorViewEngine());

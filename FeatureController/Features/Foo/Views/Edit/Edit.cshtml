@@ -1,13 +1,19 @@
 ﻿@model FeatureController.Features.Foo.ViewModels.FooEditViewModel
-
-@using (Html.BeginForm())
+@{
+    ViewContext.ClientValidationEnabled = true;
+}
+@using (Ajax.BeginForm(DefaultOptions.Form()))
 {
     @Html.ValidationSummary(false)
 
     @Html.HiddenFor(x => x.Id)
-    <div class="control-group">
-        @Html.LabelFor(x => x.FooEingabe)
-        @Html.EditorFor(x => x.FooEingabe)
+    <div class="form-group">
+        @Html.LabelFor(x => x.FooEingabe, new { @class = "control-label" })
+        @Html.EditorFor(x => x.FooEingabe, new { htmlAttributes = new { @class = "form-control" } })
+        @Html.ValidationMessageFor(x => x.FooEingabe, "", new { @class = "help-inline" })
+        <div class="help-block hide" data-server-validation-for="@Html.NameFor(x=>x.FooEingabe)">
+
+        </div>
     </div>
 
     <button type="submit" class="btn">Speichern</button>

@@ -1,8 +1,8 @@
 <?xml version="1.0"?>
 <package >
   <metadata>
-    <id>FeatureController.Bar</id>
-    <version>0.2.3.6</version>
+    <id>FeatureController.Features.Bar</id>
+    <version>0.2.3.13</version>
     <title>Feature Bar</title>
     <authors>CF</authors>
     <owners>CF</owners>
